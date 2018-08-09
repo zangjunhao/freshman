@@ -1,5 +1,8 @@
 package com.mredrock.cyxbs.freshman.model.http.httpmethods;
 
+import android.content.res.Resources;
+
+import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Describe;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 import com.mredrock.cyxbs.freshman.model.http.ApiException;

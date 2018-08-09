@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 import com.mredrock.cyxbs.freshman.model.http.httpmethods.DescribeMethod;
+import com.mredrock.cyxbs.freshman.model.http.httpmethods.HttpMethods;
 import com.mredrock.cyxbs.freshman.presenter.base.BasePresenter;
 import com.mredrock.cyxbs.freshman.view.view.BaseView;
 import com.mredrock.cyxbs.freshman.view.view.RuXueView;
@@ -26,7 +27,7 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
 
     private void getData(){
         Subscriber subscriber = getsubscriber();
-      DescribeMethod.getInstance().getService("入学必备",subscriber);
+        HttpMethods.getInstance().getServiceOfDescribe(subscriber,"入学必备");
     }
     public Subscriber<List<Describe_1>> getsubscriber(){
         Subscriber<List<Describe_1>> subscriber = new Subscriber<List<Describe_1>>() {
