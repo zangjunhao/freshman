@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:background="#ff5CACFC">
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="20dp"
+            android:src="@drawable/freshman_back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"/>
+
+
+        <TextView
+            android:id="@+id/ruxue"
+            android:layout_width="73dp"
+            android:layout_height="18dp"
+            android:textSize="15sp"
+            android:text="入学必备"
+            android:gravity="center"
+            android:textColor="#ffFEFEFF"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            />
+       
+        <TextView
+            android:layout_width="31dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:text="编辑"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textColor="#ffffffff"
+            android:textSize="14sp"
+            android:layout_marginRight="13dp"/>
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:src="@drawable/freshman_wenhao"
+            android:layout_toRightOf="@id/ruxue"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="33dp"
+        />
+        
+</RelativeLayout>

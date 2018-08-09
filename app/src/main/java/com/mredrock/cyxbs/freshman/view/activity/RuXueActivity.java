@@ -15,7 +15,7 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ru_xue);
+        setContentView(R.layout.activity_necessary);
         presenter = new RuXuePresenter(this,this);
     }
 
