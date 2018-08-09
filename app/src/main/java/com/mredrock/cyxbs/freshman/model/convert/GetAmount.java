@@ -1,8 +1,11 @@
-package com.mredrock.cyxbs.freshman.model.http;
+package com.mredrock.cyxbs.freshman.model.convert;
 
-public class HttpResult<T> {
+import java.util.List;
+
+public class GetAmount {
     private int index;
     private int amount;
+    private List<String> name;
 
     public int getIndex() {
         return index;
@@ -20,15 +23,11 @@ public class HttpResult<T> {
         this.amount = amount;
     }
 
-    private T data;
-
-
-
-    public T getData() {
-        return data;
+    public List<String> getName() {
+        return name;
     }
 
-    public void setData(T data) {
-        this.data = data;
+    public void setName(List<String> name) {
+        this.name = name;
     }
 }
