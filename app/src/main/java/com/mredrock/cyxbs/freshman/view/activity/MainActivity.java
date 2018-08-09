@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.GetName;
-import com.mredrock.cyxbs.freshman.model.http.httpmethods.GetNameMethods;
 
 import java.util.HashMap;
 import java.util.List;

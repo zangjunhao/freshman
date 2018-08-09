@@ -37,14 +37,16 @@
             android:textSize="14sp"
             android:layout_marginRight="13dp"/>
         <ImageView
+            android:id="@+id/necessary_detail_function"
             android:layout_width="17dp"
             android:layout_height="17dp"
             android:src="@drawable/freshman_wenhao"
-            android:layout_toRightOf="@id/ruxue"
+            android:layout_toRightOf="@+id/ruxue"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/necessary_rc_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="33dp"

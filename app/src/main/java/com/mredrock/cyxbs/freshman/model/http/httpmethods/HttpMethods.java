@@ -4,6 +4,7 @@ import com.mredrock.cyxbs.freshman.model.convert.CampusStrategy;
 import com.mredrock.cyxbs.freshman.model.convert.Describe;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 import com.mredrock.cyxbs.freshman.model.convert.JunXun;
+import com.mredrock.cyxbs.freshman.model.convert.StudentRoom;
 import com.mredrock.cyxbs.freshman.model.http.ApiException;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.CampusStrategyService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.ChatGroupService;
@@ -12,6 +13,7 @@ import com.mredrock.cyxbs.freshman.model.http.apiservice.GetNameService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.HardService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.JunXunService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.SchoolService;
+import com.mredrock.cyxbs.freshman.model.http.apiservice.StudentRoomService;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -87,6 +89,11 @@ public class HttpMethods {
     public<T> void getServiceOfSchool(Subscriber<T> s,String name) {
 
         Observable observable = retrofit.create(SchoolService.class).getService(name);
+        toSubscribe(observable,s);
+    }
+
+    public<T> void getServiceOfStudentRoom(Subscriber<T> s,String name){
+        Observable observable = retrofit.create(StudentRoomService.class).getService(name);
         toSubscribe(observable,s);
     }
 

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
-import com.mredrock.cyxbs.freshman.model.http.httpmethods.DescribeMethod;
 import com.mredrock.cyxbs.freshman.model.http.httpmethods.HttpMethods;
 import com.mredrock.cyxbs.freshman.presenter.base.BasePresenter;
 import com.mredrock.cyxbs.freshman.view.view.BaseView;
@@ -33,7 +32,7 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
         Subscriber<List<Describe_1>> subscriber = new Subscriber<List<Describe_1>>() {
             @Override
             public void onCompleted() {
-
+                view.onFinish();
             }
 
             @Override
@@ -43,8 +42,9 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
 
             @Override
             public void onNext(List<Describe_1> describe_1s) {
-                for (Describe_1 describe_1:describe_1s){
-                    view.describe(describe_1.getId(),describe_1.getName(),describe_1.getContent());
+                int size = describe_1s.size();
+                for (int i = 0;i<size;i++){
+                    view.describe(describe_1s.get(i));
                 }
             }
         };
