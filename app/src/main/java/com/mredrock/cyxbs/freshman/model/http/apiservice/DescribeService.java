@@ -1,5 +1,6 @@
 package com.mredrock.cyxbs.freshman.model.http.apiservice;
 
+import com.mredrock.cyxbs.freshman.model.convert.Describe;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 
 import java.util.List;
@@ -10,5 +11,5 @@ import rx.Observable;
 
 public interface DescribeService {
     @GET("data/get/describe")
-    Observable<List<Describe_1>> getService(@Query("index")String index);
+    Observable<Describe> getService(@Query("index")String index);
 }

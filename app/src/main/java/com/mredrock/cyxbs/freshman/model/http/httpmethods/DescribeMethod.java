@@ -4,6 +4,7 @@ import com.mredrock.cyxbs.freshman.model.convert.Describe;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 import com.mredrock.cyxbs.freshman.model.http.ApiException;
 import com.mredrock.cyxbs.freshman.model.http.HttpResult;
+import com.mredrock.cyxbs.freshman.model.http.apiservice.DescribeService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.GetNameService;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class DescribeMethod {
     public static final String BASE_URL = "http://118.24.175.82/";
     private static final int DEFAULT_TIMEOUT = 5;
     private Retrofit retrofit;
-    private GetNameService getNameService;
+    private DescribeService describeService;
 
     private DescribeMethod() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -35,7 +36,7 @@ public class DescribeMethod {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
-        getNameService = retrofit.create(GetNameService.class);
+        describeService = retrofit.create(DescribeService.class);
     }
 
     private static class SingleTonHolder {
@@ -46,21 +47,10 @@ public class DescribeMethod {
         return DescribeMethod.SingleTonHolder.HTTP_METHODS;
     }
 
-    public<T> void getService(String path, Map<String,String> map, Subscriber<T> s) {
-        Observable observable = getNameService.getService(path,map);
-//                .map(new Func1<Describe,List<Describe_1>>() {
-//
-//                         @Override
-//                         public List<Describe_1> call(Describe describe) {
-//                             if (!(describe.getIndex().equals("入学必备") || describe.getIndex().equals("军训小贴士"))) {
-//                                 throw new ApiException("error:index value error");
-//                             } else {
-//                                 return describe.getDescribe();
-//                             }
-//                         }
-//                     }
-//
-//                );
+    public<T> void getService(String index, Subscriber<T> s) {
+        Observable observable = describeService.getService(index)
+                .map(new HttpResultFun());
+
         toSubscribe(observable,s);
     }
 
@@ -70,5 +60,15 @@ public class DescribeMethod {
                 .unsubscribeOn(Schedulers.io())
                 .subscribe(s);
     }
+    private class HttpResultFun implements Func1<Describe,List<Describe_1>>{
 
+        @Override
+        public List<Describe_1> call(Describe describe) {
+            if (!(describe.getIndex().equals("入学必备") || describe.getIndex().equals("军训小贴士"))) {
+                throw new ApiException("error:index value error");
+            } else {
+                return describe.getDescribe();
+            }
+        }
+    }
 }

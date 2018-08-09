@@ -43,6 +43,5 @@ public class MainActivity extends AppCompatActivity {
         };
         HashMap hashMap = new HashMap<String,String>();
        // hashMap.put("index","学生食堂");
-        GetNameMethods.getInstance().getService("getname",hashMap,subscriber);
     }
 }

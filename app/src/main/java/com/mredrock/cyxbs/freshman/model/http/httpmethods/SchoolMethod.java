@@ -1,10 +1,7 @@
 package com.mredrock.cyxbs.freshman.model.http.httpmethods;
 
-import com.mredrock.cyxbs.freshman.model.http.apiservice.GetNameService;
-
-import java.util.Map;
+import com.mredrock.cyxbs.freshman.model.http.apiservice.SchoolService;
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -14,13 +11,13 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class GetNameMethods {
+public class SchoolMethod {
     public static final String BASE_URL = "http://118.24.175.82/";
     private static final int DEFAULT_TIMEOUT = 5;
     private Retrofit retrofit;
-    private GetNameService getNameService;
+    private SchoolService schoolService;
 
-    private GetNameMethods() {
+    private SchoolMethod() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         retrofit = new Retrofit.Builder()
@@ -29,19 +26,19 @@ public class GetNameMethods {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
-        getNameService = retrofit.create(GetNameService.class);
+       SchoolService schoolService = retrofit.create(SchoolService.class);
     }
 
     private static class SingleTonHolder {
-        private static final GetNameMethods HTTP_METHODS = new GetNameMethods();
+        private static final SchoolMethod HTTP_METHODS = new SchoolMethod();
     }
 
-    public static GetNameMethods getInstance() {
+    public static SchoolMethod getInstance() {
         return SingleTonHolder.HTTP_METHODS;
     }
 
-    public<T> void getService(Subscriber<T> s) {
-       Observable observable = getNameService.getService();
+    public<T> void getService(Subscriber<T> s,String name) {
+        Observable observable = schoolService.getService(name);
         toSubscribe(observable,s);
     }
 

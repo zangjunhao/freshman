@@ -3,6 +3,10 @@ package com.mredrock.cyxbs.freshman.model.convert;
 import java.util.List;
 
 public class Describe {
+
+    /*
+    *接口7
+     */
     private String index;
     private List<Describe_1> describe;
 

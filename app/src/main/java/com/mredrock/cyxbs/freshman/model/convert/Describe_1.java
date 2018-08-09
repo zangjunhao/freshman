@@ -1,6 +1,10 @@
 package com.mredrock.cyxbs.freshman.model.convert;
 
 public class Describe_1 {
+
+    /*
+    *接口7
+     */
         private int id;
         private String name;
         private String content;

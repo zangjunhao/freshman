@@ -1,10 +1,8 @@
 package com.mredrock.cyxbs.freshman.model.http.httpmethods;
 
-import com.mredrock.cyxbs.freshman.model.http.apiservice.GetNameService;
 
-import java.util.Map;
+import com.mredrock.cyxbs.freshman.model.http.apiservice.JunXunService;
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -14,13 +12,13 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class GetNameMethods {
+public class JunxunMethod {
     public static final String BASE_URL = "http://118.24.175.82/";
     private static final int DEFAULT_TIMEOUT = 5;
     private Retrofit retrofit;
-    private GetNameService getNameService;
+    private JunXunService junXunService;
 
-    private GetNameMethods() {
+    private JunxunMethod() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         retrofit = new Retrofit.Builder()
@@ -29,19 +27,19 @@ public class GetNameMethods {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
-        getNameService = retrofit.create(GetNameService.class);
+       junXunService = retrofit.create(JunXunService.class);
     }
 
     private static class SingleTonHolder {
-        private static final GetNameMethods HTTP_METHODS = new GetNameMethods();
+        private static final JunxunMethod HTTP_METHODS = new JunxunMethod();
     }
 
-    public static GetNameMethods getInstance() {
+    public static JunxunMethod getInstance() {
         return SingleTonHolder.HTTP_METHODS;
     }
 
     public<T> void getService(Subscriber<T> s) {
-       Observable observable = getNameService.getService();
+        Observable observable = junXunService.getService();
         toSubscribe(observable,s);
     }
 

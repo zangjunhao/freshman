@@ -3,6 +3,10 @@ package com.mredrock.cyxbs.freshman.model.convert;
 import java.util.List;
 
 public class GetAmount {
+
+    /*
+    *接口1
+     */
     private int index;
     private int amount;
     private List<String> name;

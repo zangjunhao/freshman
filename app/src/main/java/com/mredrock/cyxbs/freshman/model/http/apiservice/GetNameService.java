@@ -8,6 +8,6 @@ import retrofit2.http.QueryMap;
 import rx.Observable;
 
 public interface GetNameService {
-    @GET("{path}")
-    Observable<GetName> getService(@Path("path")String path, @QueryMap Map<String,String> map);
+    @GET("search/school/getname")
+    Observable<GetName> getService();
 }
