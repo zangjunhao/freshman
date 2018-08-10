@@ -19,7 +19,7 @@
         android:layout_height="36dp"
         android:layout_centerHorizontal="true"
         android:textColor="#ff555555"
-       android:textSize="15sp"
+        android:textSize="15sp"
         android:layout_marginTop="63dp"
         android:text="1.文本框右侧【�??头】查看每一项任务具体�?�情�?"/>
     <TextView

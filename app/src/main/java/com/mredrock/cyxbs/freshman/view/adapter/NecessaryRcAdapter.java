@@ -1,16 +1,19 @@
 package com.mredrock.cyxbs.freshman.view.adapter;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 
+import java.nio.charset.CharacterCodingException;
 import java.util.List;
 import java.util.zip.Inflater;
 
@@ -34,6 +37,24 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
         holder.itemTextView.setText(describe_1.getName());
         holder.detailTextView.setText(describe_1.getContent());
         final ImageView imageView = holder.detailImageView;
+        final CheckBox checkBox=holder.nCheckBox;
+        final TextView itemTextView=holder.itemTextView;
+        final TextView detailTextView=holder.detailTextView;
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean ischeck) {
+                if(ischeck)
+                {
+                    itemTextView.setTextColor(Color.parseColor("#999999"));
+                    detailTextView.setTextColor(Color.parseColor("#999999"));
+                }
+                else
+                {
+                    itemTextView.setTextColor(Color.parseColor("#333333"));
+                    detailTextView.setTextColor(Color.parseColor("#666666"));
+                }
+            }
+        });
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
