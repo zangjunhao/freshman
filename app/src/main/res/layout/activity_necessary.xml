@@ -32,6 +32,7 @@
             />
        
         <TextView
+            android:id="@+id/necessary_edit"
             android:layout_width="31dp"
             android:layout_height="16dp"
             android:layout_alignParentRight="true"

@@ -32,6 +32,7 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
     private RelativeLayout addLayout;
     private EditText inputView;
     private Button addButton;
+    private TextView editTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +43,7 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
         addLayout = (RelativeLayout)findViewById(R.id.necessary_add_layout);
         inputView = (EditText)findViewById(R.id.necessary_add_input);
         addButton = (Button)findViewById(R.id.necessary_add_button);
+        editTextView = (TextView)findViewById(R.id.necessary_edit);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
         presenter = new RuXuePresenter(this,this);
