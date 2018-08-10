@@ -1,8 +1,15 @@
 package com.mredrock.cyxbs.freshman.presenter.presenter;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 import com.mredrock.cyxbs.freshman.model.http.httpmethods.HttpMethods;
 import com.mredrock.cyxbs.freshman.presenter.base.BasePresenter;
@@ -50,5 +57,26 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
         };
         return subscriber;
     }
+    public void showDialog(){
+        final Dialog dialog = new Dialog(mContext);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.neccesary_dialog,null,false);
+        TextView contentText = (TextView)view.findViewById(R.id.necessary_function_content);
+        ImageView cancelView = (ImageView)view.findViewById(R.id.necessary_cancel_dialog);
+        contentText.setText("hello");
+        dialog.addContentView(view,new RelativeLayout.LayoutParams(dip2px(286),dip2px(272)));
+        dialog.setCancelable(false);
+        dialog.show();
+        cancelView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
 
+    public  int dip2px(int dp)
+    {
+        float density = mContext.getResources().getDisplayMetrics().density;
+        return (int) (dp*density+0.5);
+    }
 }

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RelativeLayout
+    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="33dp"
         android:background="#ff5CACFC">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <ImageView
             android:layout_width="10dp"
             android:layout_height="20dp"
@@ -43,7 +46,14 @@
             android:src="@drawable/freshman_wenhao"
             android:layout_toRightOf="@+id/ruxue"
             android:layout_centerVertical="true"/>
-    </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/freshman_add"
+        android:layout_gravity="bottom|end"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/necessary_rc_view"
@@ -52,4 +62,4 @@
         android:layout_marginTop="33dp"
         />
         
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
