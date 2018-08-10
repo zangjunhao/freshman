@@ -1,12 +1,10 @@
 package com.mredrock.cyxbs.freshman.view.activity;
 
-import android.app.Dialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,9 +17,10 @@ import com.mredrock.cyxbs.freshman.presenter.presenter.RuXuePresenter;
 import com.mredrock.cyxbs.freshman.view.adapter.NecessaryRcAdapter;
 import com.mredrock.cyxbs.freshman.view.view.RuXueView;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
-public class RuXueActivity extends AppCompatActivity implements RuXueView, View.OnClickListener{
+public class RuXueActivity extends AppCompatActivity implements RuXueView, View.OnClickListener,NecessaryRcAdapter.OnClickListener{
 
     private RuXuePresenter presenter;
     private RecyclerView recyclerView;
@@ -33,6 +32,8 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
     private EditText inputView;
     private Button addButton;
     private TextView editTextView;
+    private int deleteNum = 0;
+    private HashSet<String> needDeleteSet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +50,7 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
         presenter = new RuXuePresenter(this,this);
         detaiFunctionView.setOnClickListener(this);
         floatingActionButton.setOnClickListener(this);
+        editTextView.setOnClickListener(this);
     }
 
     @Override
@@ -60,6 +62,7 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
     public void onFinish() {
         adapter = new NecessaryRcAdapter(mList);
         recyclerView.setAdapter(adapter);
+        adapter.onItemClick(this);
     }
 
     @Override
@@ -85,7 +88,43 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
                 inputView.setText("");
                 addLayout.setVisibility(View.GONE);
                 floatingActionButton.show();
-
+                break;
+            case R.id.necessary_edit:
+                if (!adapter.isDelete){
+                    adapter.isDelete = true;
+                    editTextView.setText("删除(0)");
+                }else {
+                    if (deleteNum>0){
+                        for (String name:needDeleteSet){
+                            presenter.deleteData("name=?",new String[]{name});
+                        }
+                          mList.clear();
+                          presenter.addData(null,null);
+                    }
+                    adapter.isDelete = false;
+                    editTextView.setText("编辑");
+                    deleteNum = 0;
+                    needDeleteSet = null;
+                }
+                adapter.notifyDataSetChanged();
+                break;
         }
+    }
+
+    @Override
+    public void onItemClick(boolean select, String name) {
+        if (select){
+            if (needDeleteSet==null){
+                needDeleteSet = new HashSet<>();
+            }
+            needDeleteSet.add(name);
+            deleteNum++;
+        }else {
+            if (needDeleteSet.contains(name)) {
+                needDeleteSet.remove(name);
+                deleteNum--;
+            }
+        }
+        editTextView.setText("删除（"+deleteNum+")");
     }
 }

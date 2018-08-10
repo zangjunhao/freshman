@@ -69,7 +69,7 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
         return subscriber;
     }
 
-    private void addData(String selection,String[] selectionArgs){
+    public void addData(String selection,String[] selectionArgs){
         Cursor cursor = databaseUtil.query(TABLE_NECESSARY,selection,selectionArgs);
         if (cursor.getCount()<10){
             getData();
@@ -99,6 +99,10 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
                 dialog.dismiss();
             }
         });
+    }
+
+    public void deleteData(String selection,String[] selectionArgs){
+        databaseUtil.delete(TABLE_NECESSARY,selection,selectionArgs);
     }
 
     public void addContent(String name){

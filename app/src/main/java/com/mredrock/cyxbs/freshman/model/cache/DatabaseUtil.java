@@ -35,6 +35,12 @@ public class DatabaseUtil {
           db.insert(table,null,values);
          values.clear();
         }
+        public void delete(String table,String selection,String[] selectionArgs){
+        if (db==null){
+            return;
+        }
+            db.delete(table,selection,selectionArgs);
+        }
 
         public Cursor query(String table,String selection,String[] selectionArgs ){
         if (db==null){
