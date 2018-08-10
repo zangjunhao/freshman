@@ -22,7 +22,7 @@ public class MilitaryViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return null;
+        return creatFragment(position);
     }
 
     @Override
