@@ -34,6 +34,7 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
     private TextView editTextView;
     private int deleteNum = 0;
     private HashSet<String> needDeleteSet;
+    private ImageView backImag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,12 +46,14 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
         inputView = (EditText)findViewById(R.id.necessary_add_input);
         addButton = (Button)findViewById(R.id.necessary_add_button);
         editTextView = (TextView)findViewById(R.id.necessary_edit);
+        backImag = (ImageView)findViewById(R.id.necessary_back);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
         presenter = new RuXuePresenter(this,this);
         detaiFunctionView.setOnClickListener(this);
         floatingActionButton.setOnClickListener(this);
         editTextView.setOnClickListener(this);
+        backImag.setOnClickListener(this);
     }
 
     @Override
@@ -88,6 +91,9 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
                 inputView.setText("");
                 addLayout.setVisibility(View.GONE);
                 floatingActionButton.show();
+                break;
+            case R.id.necessary_back:
+                finish();
                 break;
             case R.id.necessary_edit:
                 if (!adapter.isDelete){

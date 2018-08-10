@@ -4,6 +4,7 @@ import com.mredrock.cyxbs.freshman.model.convert.CampusStrategy;
 import com.mredrock.cyxbs.freshman.model.convert.Describe;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 import com.mredrock.cyxbs.freshman.model.convert.JunXun;
+import com.mredrock.cyxbs.freshman.model.convert.Strategy;
 import com.mredrock.cyxbs.freshman.model.convert.StudentRoom;
 import com.mredrock.cyxbs.freshman.model.http.ApiException;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.CampusStrategyService;
@@ -57,9 +58,16 @@ public class HttpMethods {
         Observable observable = retrofit.create(JunXunService.class).getService();
         toSubscribe(observable,s);
     }
-    public<T> void getServiceOfStrategy(Subscriber<T> s,String index,String pageNum,String pageSize) {
+    public<T> void getServiceOfStrategy(Subscriber<T> s,String index,int pageNum,int pageSize) {
 
-        Observable observable = retrofit.create(CampusStrategyService.class).getService(index,pageNum,pageSize);
+        Observable observable = retrofit.create(CampusStrategyService.class).getService(index,pageNum,pageSize)
+                .map(new Func1<CampusStrategy,List<Strategy>>() {
+
+                    @Override
+                    public List<Strategy> call(CampusStrategy campusStrategy) {
+                        return campusStrategy.getArray();
+                    }
+                });
         toSubscribe(observable,s);
     }
     public<T> void getServiceOfChatGroup(Subscriber<T> s,String index) {

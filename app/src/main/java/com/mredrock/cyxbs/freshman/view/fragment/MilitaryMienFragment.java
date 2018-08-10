@@ -28,7 +28,7 @@ public class MilitaryMienFragment extends Fragment implements JunxunView {
         VideoList=(RecyclerView)view.findViewById(R.id.junxunVideolist);
         final LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         PhotoList.setLayoutManager(linearLayoutManager);
-        VideoList.setLayoutManager(linearLayoutManager);
+      //  VideoList.setLayoutManager(linearLayoutManager);
         return view;
     }
 

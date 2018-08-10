@@ -8,5 +8,5 @@ import rx.Observable;
 
 public interface CampusStrategyService {
     @GET("data/get/byindex")
-    Observable<CampusStrategy> getService(@Query("index")String index, @Query("pagenum")String pageNum, @Query("pagesize")String pageSize);
+    Observable<CampusStrategy> getService(@Query("index")String index, @Query("pagenum")int pageNum, @Query("pagesize")int pageSize);
 }

@@ -12,6 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         <ImageView
+            android:id="@+id/necessary_back"
             android:layout_width="10dp"
             android:layout_height="20dp"
             android:src="@drawable/freshman_back"
@@ -87,6 +88,7 @@
                 <EditText
                     android:id="@+id/necessary_add_input"
                     android:hint="请输入待办事项"
+                    android:maxLength="14"
                     android:background="@null"
                     android:textSize="14sp"
                     android:gravity="center_vertical"
