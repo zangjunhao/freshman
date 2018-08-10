@@ -21,7 +21,7 @@
         android:textColor="#ff555555"
         android:textSize="15sp"
         android:layout_marginTop="63dp"
-        android:text="1.文本框右侧【�??头】查看每一项任务具体�?�情�?"/>
+        android:text="1.文本框右侧【箭头】查看每一项任务具体详情。"/>
     <TextView
         android:layout_width="254dp"
         android:layout_height="58dp"
@@ -29,14 +29,14 @@
         android:textColor="#ff555555"
         android:textSize="15dp"
         android:layout_marginTop="113dp"
-        android:text="2.右上角的【编辑�?,通过勾选进行选择性删除（�?标�?�可删除圆圈的则为报道必须）"/>
+        android:text="2.右上角的【编辑】,通过勾选进行选择性删除（未标记可删除圆圈的则为报道必须）"/>
     <TextView
         android:layout_width="254dp"
         android:layout_height="37dp"
         android:layout_centerHorizontal="true"
         android:textColor="#ff555555"
         android:textSize="15dp"
-        android:text="3.点击左侧【】空方�?�勾选�?�项即为完成，再次点击即�?恢���?"
+        android:text="3.点击左侧【】空方框勾选该项即为完成，再次点击即可恢复。"
         android:layout_marginTop="185dp"/>
     <TextView
         android:layout_width="254dp"
@@ -45,7 +45,7 @@
         android:textColor="#ff555555"
         android:textSize="15dp"
         android:layout_marginTop="235dp"
-        android:text="4.右下角【加号】图样可�?定义添加新待�?"/>
+        android:text="4.右下角【加号】图样可自定义添加新待办"/>
     <ImageView
         android:id="@+id/necessary_cancel_dialog"
         android:src="@drawable/freshman_cancel"

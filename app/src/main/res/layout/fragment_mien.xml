@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:id="@+id/junxunPhoto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="军训图片"
+    android:textSize="20sp"
+    />
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:id="@+id/junxunPhotolist"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:layout_below="@id/junxunPhoto"
+        />
+    <TextView
+        android:id="@+id/junxunVideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="军训视频"
+        android:textSize="20sp"
+        android:layout_below="@id/junxunPhotolist"
+        android:layout_marginTop="50dp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/junxunVideolist"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:layout_below="@id/junxunVideo"/>
+    <TextView
+        android:id="@+id/junxunVideoName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="视频名字"
+        android:textSize="20sp"
+        android:layout_below="@id/junxunVideolist"
+        android:layout_marginTop="5dp"/>
+    
+</RelativeLayout>

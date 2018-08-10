@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -20,7 +22,7 @@ import java.util.zip.Inflater;
 public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.ViewHolder> {
 
     private List<Describe_1> mList;
-
+    //private  Animation rotateAnimation = new RotateAnimation(0,270,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
     public NecessaryRcAdapter(List<Describe_1> mList) {
         this.mList = mList;
     }
@@ -61,10 +63,12 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
                boolean isSelected = imageView.isSelected();
                if (!isSelected){
                  holder.detailTextView.setVisibility(View.VISIBLE);
-                  imageView.setSelected(true);
+                imageView.setSelected(true);
+                   //imageView.startAnimation(rotateAnimation);
                }else {
                   holder.detailTextView.setVisibility(View.GONE);
-                   imageView.setSelected(false);
+                imageView.setSelected(false);
+                   //imageView.startAnimation(rotateAnimation);
                }
             }
         });
