@@ -23,12 +23,18 @@ import rx.Subscriber;
 public class RuXuePresenter extends BasePresenter<BaseView>{
     private RuXueView view;
     private Context mContext;
+    private DatabaseUtil databaseUtil;
+    private int version;
+    private ContentValues values = new ContentValues();
+    private static final String TABLE_NECESSARY = "necessary";
 
     public RuXuePresenter(RuXueView view, Context mContext) {
         attachView(view,mContext);
         this.view = view;
         this.mContext = mContext;
-        getData();
+        databaseUtil = DatabaseUtil.DatabaseUtilHelper.getInstance();
+        databaseUtil.initDatabasse(mContext,"Freshman.db",3);
+        addData(null,null);
     }
 
     private void getData(){
@@ -51,11 +57,31 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
             public void onNext(List<Describe_1> describe_1s) {
                 int size = describe_1s.size();
                 for (int i = 0;i<size;i++){
-                    view.describe(describe_1s.get(i));
+                    Describe_1 describe_1 = describe_1s.get(i);
+                    view.describe(describe_1);
+                    values.put("name",describe_1.getName());
+                    values.put("content",describe_1.getContent());
+                    databaseUtil.add(TABLE_NECESSARY,values);
                 }
             }
         };
         return subscriber;
+    }
+
+    private void addData(String selection,String[] selectionArgs){
+        Cursor cursor = databaseUtil.query(TABLE_NECESSARY,selection,selectionArgs);
+        if (cursor.getCount()<10){
+            getData();
+            return;
+        }
+        if (cursor.moveToFirst()){
+            do {
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String content = cursor.getString(cursor.getColumnIndex("content"));
+                view.describe(new Describe_1(name,content));
+            }while (cursor.moveToNext());
+        }
+        view.onFinish();
     }
     public void showDialog(){
         final Dialog dialog = new Dialog(mContext);
@@ -72,6 +98,13 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
                 dialog.dismiss();
             }
         });
+    }
+
+    public void addContent(String name){
+        view.describe(new Describe_1(name,null));
+        values.put("name",name);
+        values.put("content","");
+        databaseUtil.add(TABLE_NECESSARY,values);
     }
 
     public  int dip2px(int dp)

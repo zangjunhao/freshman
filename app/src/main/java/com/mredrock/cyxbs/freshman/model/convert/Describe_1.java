@@ -9,6 +9,14 @@ public class Describe_1 {
         private String name;
         private String content;
 
+    public Describe_1() {
+    }
+
+    public Describe_1(String name, String content) {
+        this.name = name;
+        this.content = content;
+    }
+
     public int getId() {
         return id;
     }
