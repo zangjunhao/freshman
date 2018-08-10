@@ -60,12 +60,12 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
     public void showDialog(){
         final Dialog dialog = new Dialog(mContext);
         View view = LayoutInflater.from(mContext).inflate(R.layout.neccesary_dialog,null,false);
-        TextView contentText = (TextView)view.findViewById(R.id.necessary_function_content);
+       // TextView contentText = (TextView)view.findViewById(R.id.necessary_function_content);
         ImageView cancelView = (ImageView)view.findViewById(R.id.necessary_cancel_dialog);
-        contentText.setText("hello");
-        dialog.addContentView(view,new RelativeLayout.LayoutParams(dip2px(286),dip2px(272)));
+        dialog.addContentView(view,new RelativeLayout.LayoutParams(dip2px(301),dip2px(316)));
         dialog.setCancelable(false);
         dialog.show();
+        //dialog.getWindow().setContentView(view);
         cancelView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
