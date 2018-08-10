@@ -1,15 +1,16 @@
 package com.mredrock.cyxbs.freshman.presenter.presenter;
 
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.mredrock.cyxbs.freshman.R;
+import com.mredrock.cyxbs.freshman.model.cache.DatabaseUtil;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 import com.mredrock.cyxbs.freshman.model.http.httpmethods.HttpMethods;
 import com.mredrock.cyxbs.freshman.presenter.base.BasePresenter;
