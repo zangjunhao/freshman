@@ -3,6 +3,7 @@ package com.mredrock.cyxbs.freshman.presenter.presenter;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.mredrock.cyxbs.freshman.model.cache.DatabaseUtil;
 import com.mredrock.cyxbs.freshman.model.convert.Strategy;
 import com.mredrock.cyxbs.freshman.model.http.httpmethods.HttpMethods;
 import com.mredrock.cyxbs.freshman.presenter.base.BasePresenter;
@@ -14,6 +15,7 @@ import rx.Subscriber;
 
 public class CampusStrategyPresenter extends BasePresenter<CampusView> {
 
+    private DatabaseUtil databaseUtil;
     private CampusView view;
     private Context mContent;
 
@@ -21,6 +23,8 @@ public class CampusStrategyPresenter extends BasePresenter<CampusView> {
         this.view = view;
         this.mContent = mContent;
         attachView(view,mContext);
+        databaseUtil = DatabaseUtil.DatabaseUtilHelper.getInstance();
+//        databaseUtil.initDatabasse(mContext,"Freshman.db",3);
     }
     private Subscriber<List<Strategy>> getSubscriber(){
         return new Subscriber<List<Strategy>>() {

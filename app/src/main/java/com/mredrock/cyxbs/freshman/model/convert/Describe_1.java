@@ -9,6 +9,25 @@ public class Describe_1 {
         private String name;
         private String content;
 
+    public int getOldPosition() {
+        return oldPosition;
+    }
+
+    public void setOldPosition(int oldPosition) {
+        this.oldPosition = oldPosition;
+    }
+
+    public int getNewPosition() {
+        return newPosition;
+    }
+
+    public void setNewPosition(int newPosition) {
+        this.newPosition = newPosition;
+    }
+
+    private int oldPosition;
+        private int newPosition;
+
     public Describe_1() {
     }
 

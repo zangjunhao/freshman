@@ -14,8 +14,8 @@
         <activity android:name=".view.activity.MainActivity" />
         <activity android:name=".view.activity.MilitaryTrainingActivity">
         </activity>
-        <activity android:name=".view.activity.RuXueActivity" />
-        <activity android:name=".view.activity.CampusStrategyActivity">
+        <activity android:name=".view.activity.CampusStrategyActivity" />
+        <activity android:name=".view.activity.RuXueActivity">
            <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 

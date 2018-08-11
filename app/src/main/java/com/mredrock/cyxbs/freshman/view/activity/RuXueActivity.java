@@ -1,8 +1,11 @@
 package com.mredrock.cyxbs.freshman.view.activity;
 
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toolbar;
+
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 import com.mredrock.cyxbs.freshman.presenter.presenter.RuXuePresenter;
@@ -34,7 +39,8 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
     private TextView editTextView;
     private int deleteNum = 0;
     private HashSet<String> needDeleteSet;
-    private ImageView backImag;
+    private List<Integer> positionList = new ArrayList<>();
+    private ImageView backImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,14 +52,18 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
         inputView = (EditText)findViewById(R.id.necessary_add_input);
         addButton = (Button)findViewById(R.id.necessary_add_button);
         editTextView = (TextView)findViewById(R.id.necessary_edit);
-        backImag = (ImageView)findViewById(R.id.necessary_back);
+        backImage = (ImageView)findViewById(R.id.necessary_back);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
         presenter = new RuXuePresenter(this,this);
         detaiFunctionView.setOnClickListener(this);
         floatingActionButton.setOnClickListener(this);
         editTextView.setOnClickListener(this);
-        backImag.setOnClickListener(this);
+        backImage.setOnClickListener(this);
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        defaultItemAnimator.setRemoveDuration(1000);
+        defaultItemAnimator.setChangeDuration(0);
+        recyclerView.setItemAnimator(defaultItemAnimator);
     }
 
     @Override
@@ -63,9 +73,13 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
 
     @Override
     public void onFinish() {
-        adapter = new NecessaryRcAdapter(mList);
-        recyclerView.setAdapter(adapter);
-        adapter.onItemClick(this);
+        if (adapter==null) {
+            adapter = new NecessaryRcAdapter(mList);
+            recyclerView.setAdapter(adapter);
+            adapter.onItemClick(this);
+        }
+        adapter.notifyDataSetChanged();
+        adapter.setItemOrder();
     }
 
     @Override
@@ -96,29 +110,39 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
                 finish();
                 break;
             case R.id.necessary_edit:
+                int start = adapter.selectedNum;
+                int itemCount = mList.size()-start;
                 if (!adapter.isDelete){
-                    adapter.isDelete = true;
                     editTextView.setText("删除(0)");
+                    adapter.isDelete = true;
                 }else {
-                    if (deleteNum>0){
-                        for (String name:needDeleteSet){
-                            presenter.deleteData("name=?",new String[]{name});
+                    if (deleteNum > 0) {
+                        for (String name : needDeleteSet) {
+                            presenter.deleteData("name=?", new String[]{name});
                         }
-                          mList.clear();
-                          presenter.addData(null,null);
+//                        mList.clear();
+//                        presenter.addData(null,null);
+                        adapter.deleteData();
+                        adapter.isDelete = false;
+                        adapter.setCheckBackground();
+                        adapter.notifyItemRangeChanged(start, itemCount);
+                        positionList.clear();
+                        deleteNum = 0;
+                        editTextView.setText("编辑");
+                        break;
+                    }else {
+                        editTextView.setText("编辑");
+                        adapter.isDelete = false;
                     }
-                    adapter.isDelete = false;
-                    editTextView.setText("编辑");
-                    deleteNum = 0;
-                    needDeleteSet = null;
                 }
-                adapter.notifyDataSetChanged();
+                adapter.setCheckBackground();
+                adapter.notifyItemRangeChanged(start, itemCount);
                 break;
         }
     }
 
     @Override
-    public void onItemClick(boolean select, String name) {
+    public void onItemClick(boolean select, String name,int position) {
         if (select){
             if (needDeleteSet==null){
                 needDeleteSet = new HashSet<>();
@@ -126,11 +150,15 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
             needDeleteSet.add(name);
             deleteNum++;
         }else {
+            if (needDeleteSet==null){
+                needDeleteSet = new HashSet<>();
+            }
             if (needDeleteSet.contains(name)) {
                 needDeleteSet.remove(name);
                 deleteNum--;
             }
         }
+        positionList.add(position);
         editTextView.setText("删除（"+deleteNum+")");
     }
 }

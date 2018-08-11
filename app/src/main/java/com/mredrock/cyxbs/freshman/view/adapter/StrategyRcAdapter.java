@@ -1,6 +1,7 @@
 package com.mredrock.cyxbs.freshman.view.adapter;
 
 import android.content.Context;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Strategy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -34,10 +36,14 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Strategy strategy = mSet.pollFirst();
-        List<String> pictrues = strategy.getPicture();
-        Glide.with(mContext).load(pictrues.get(0)).into(holder.itemView);
-        holder.viewNumText.setText(String.valueOf(pictrues.size()));
+        List<String> pics = strategy.getPicture();
+        int  picSize = pics.size();
+        holder.viewNumText.setText(String.valueOf(picSize));
         holder.contentText.setText(strategy.getContent());
+        List<View> viewList = new ArrayList<>();
+        for (int i = 0;i<picSize;i++){
+            ImageView picView = new ImageView(mContext);
+        }
     }
 
     @Override
@@ -48,14 +54,14 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
     class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView orderText;
-        private ImageView itemView;
+        private ViewPager itemView;
         private TextView viewNumText;
         private TextView contentText;
 
         public ViewHolder(View view) {
             super(view);
             orderText = (TextView)view.findViewById(R.id.campus_order);
-            itemView = (ImageView)view.findViewById(R.id.campus_item_view);
+            itemView = (ViewPager)view.findViewById(R.id.campus_item_view);
             viewNumText = (TextView)view.findViewById(R.id.campus_item_view_num);
             contentText = (TextView)view.findViewById(R.id.campus_item_content);
         }
