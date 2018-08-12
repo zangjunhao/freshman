@@ -24,6 +24,7 @@ import com.mredrock.cyxbs.freshman.view.view.RuXueView;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
 
 public class RuXueActivity extends AppCompatActivity implements RuXueView, View.OnClickListener,NecessaryRcAdapter.OnClickListener{
 
@@ -79,7 +80,6 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
             adapter.onItemClick(this);
         }
         adapter.notifyDataSetChanged();
-        adapter.setItemOrder();
     }
 
     @Override
@@ -101,7 +101,8 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
                 break;
             case R.id.necessary_add_button:
                 presenter.addContent(inputView.getText().toString());
-                adapter.notifyDataSetChanged();
+                mList.clear();
+                presenter.addData();
                 inputView.setText("");
                 addLayout.setVisibility(View.GONE);
                 floatingActionButton.show();
@@ -110,8 +111,6 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
                 finish();
                 break;
             case R.id.necessary_edit:
-                int start = adapter.selectedNum;
-                int itemCount = mList.size()-start;
                 if (!adapter.isDelete){
                     editTextView.setText("删除(0)");
                     adapter.isDelete = true;
@@ -120,45 +119,44 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
                         for (String name : needDeleteSet) {
                             presenter.deleteData("name=?", new String[]{name});
                         }
-//                        mList.clear();
-//                        presenter.addData(null,null);
-                        adapter.deleteData();
-                        adapter.isDelete = false;
-                        adapter.setCheckBackground();
-                        adapter.notifyItemRangeChanged(start, itemCount);
-                        positionList.clear();
+                        mList.clear();
+                        presenter.addData();
                         deleteNum = 0;
-                        editTextView.setText("编辑");
-                        break;
-                    }else {
-                        editTextView.setText("编辑");
-                        adapter.isDelete = false;
                     }
+                    editTextView.setText("编辑");
+                    adapter.isDelete = false;
                 }
-                adapter.setCheckBackground();
-                adapter.notifyItemRangeChanged(start, itemCount);
+                adapter.notifyDataSetChanged();
                 break;
         }
     }
 
     @Override
-    public void onItemClick(boolean select, String name,int position) {
-        if (select){
+    public void onItemClick(int select, String selection,int id,int position) {
+        if (select ==NecessaryRcAdapter.DELETE_T){
             if (needDeleteSet==null){
                 needDeleteSet = new HashSet<>();
             }
-            needDeleteSet.add(name);
+            needDeleteSet.add(selection);
             deleteNum++;
-        }else {
+            positionList.add(position);
+            editTextView.setText("删除（"+deleteNum+")");
+        }else if (select == NecessaryRcAdapter.DELETE_F){
             if (needDeleteSet==null){
                 needDeleteSet = new HashSet<>();
             }
-            if (needDeleteSet.contains(name)) {
-                needDeleteSet.remove(name);
+            if (needDeleteSet.contains(selection)) {
+                needDeleteSet.remove(selection);
                 deleteNum--;
             }
+            positionList.add(position);
+            editTextView.setText("删除（"+deleteNum+")");
+        }else if (select==NecessaryRcAdapter.UPDATE_T){
+            presenter.update("number",String.valueOf(id),"id="+selection);
+            presenter.update("oldPosition",String.valueOf(position),"id="+selection);
+            return;
+        }else {
+            presenter.update("number",String.valueOf(id),"id="+selection);
         }
-        positionList.add(position);
-        editTextView.setText("删除（"+deleteNum+")");
     }
 }

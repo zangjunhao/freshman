@@ -11,6 +11,9 @@ public class FreshmanDatabase extends SQLiteOpenHelper {
     public static final String NECESSARY_ADD_CONTENT = "create table necessary("
             +"id integer primary key autoincrement,"
             +"name text ,"
+            +"number integer,"
+            +"oldPosition integer,"
+            +"property text,"
             +"content text  )";
     public FreshmanDatabase(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);

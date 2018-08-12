@@ -10,6 +10,15 @@ public class Strategy implements Comparable<Strategy>,Serializable{
     private String name;
     private String content;
     private List<String> picture;
+    private int number;
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 
     public int getId() {
         return id;

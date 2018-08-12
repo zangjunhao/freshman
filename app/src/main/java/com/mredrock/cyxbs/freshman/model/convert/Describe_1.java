@@ -1,6 +1,8 @@
 package com.mredrock.cyxbs.freshman.model.convert;
 
-public class Describe_1 {
+import android.support.annotation.NonNull;
+
+public class Describe_1 implements Comparable<Describe_1>{
 
     /*
     *接口7
@@ -8,6 +10,26 @@ public class Describe_1 {
         private int id;
         private String name;
         private String content;
+       private int oldPosition;
+       private int newPosition;
+       private int number;
+       private String property;
+
+    public String getProperty() {
+        return property;
+    }
+
+    public void setProperty(String property) {
+        this.property = property;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 
     public int getOldPosition() {
         return oldPosition;
@@ -24,10 +46,6 @@ public class Describe_1 {
     public void setNewPosition(int newPosition) {
         this.newPosition = newPosition;
     }
-
-    private int oldPosition;
-        private int newPosition;
-
     public Describe_1() {
     }
 
@@ -58,5 +76,23 @@ public class Describe_1 {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+
+    @Override
+    public int compareTo(@NonNull Describe_1 describe_1) {
+       if (this.number>describe_1.getNumber()||this.number<=0){
+           return 1;
+       }else if (this.number<describe_1.getNumber()){
+           return -1;
+       }else {
+           if (this.id>describe_1.getId()){
+               return 1;
+           }else if (this.id<describe_1.getId()){
+               return -1;
+           }else {
+               return 0;
+           }
+       }
     }
 }

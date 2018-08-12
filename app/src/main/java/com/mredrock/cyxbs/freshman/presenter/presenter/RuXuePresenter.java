@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.cache.DatabaseUtil;
+import com.mredrock.cyxbs.freshman.model.convert.Describe;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 import com.mredrock.cyxbs.freshman.model.http.httpmethods.HttpMethods;
 import com.mredrock.cyxbs.freshman.presenter.base.BasePresenter;
@@ -25,7 +26,6 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
     private RuXueView view;
     private Context mContext;
     private DatabaseUtil databaseUtil;
-    private int version;
     private ContentValues values = new ContentValues();
     private static final String TABLE_NECESSARY = "necessary";
 
@@ -34,8 +34,8 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
         this.view = view;
         this.mContext = mContext;
         databaseUtil = DatabaseUtil.DatabaseUtilHelper.getInstance();
-        databaseUtil.initDatabasse(mContext,"Freshman.db",3);
-        addData(null,null);
+        databaseUtil.initDatabasse(mContext,"Freshman.db",4);
+        addData();
     }
 
     private void getData(){
@@ -59,9 +59,13 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
                 int size = describe_1s.size();
                 for (int i = 0;i<size;i++){
                     Describe_1 describe_1 = describe_1s.get(i);
+                    describe_1.setNumber(100+i);
+                    describe_1.setId(i);
                     view.describe(describe_1);
                     values.put("name",describe_1.getName());
                     values.put("content",describe_1.getContent());
+                    values.put("number",100+i);
+                    values.put("property",describe_1.getProperty());
                     databaseUtil.add(TABLE_NECESSARY,values);
                 }
             }
@@ -69,8 +73,8 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
         return subscriber;
     }
 
-    public void addData(String selection,String[] selectionArgs){
-        Cursor cursor = databaseUtil.query(TABLE_NECESSARY,selection,selectionArgs);
+    public void addData(){
+        Cursor cursor = databaseUtil.querySort(TABLE_NECESSARY,"number");
         if (cursor.getCount()<10){
             getData();
             return;
@@ -79,7 +83,16 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
             do {
                 String name = cursor.getString(cursor.getColumnIndex("name"));
                 String content = cursor.getString(cursor.getColumnIndex("content"));
-                view.describe(new Describe_1(name,content));
+                int number = cursor.getInt(cursor.getColumnIndex("number"));
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                int oldPosition = cursor.getInt(cursor.getColumnIndex("oldPosition"));
+                String property = cursor.getString(cursor.getColumnIndex("property"));
+                Describe_1 describe_1 = new Describe_1(name,content);
+                describe_1.setId(id);
+                describe_1.setNumber(number);
+                describe_1.setProperty(property);
+                describe_1.setOldPosition(oldPosition);
+                view.describe(describe_1);
             }while (cursor.moveToNext());
         }
         view.onFinish();
@@ -87,12 +100,10 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
     public void showDialog(){
         final Dialog dialog = new Dialog(mContext);
         View view = LayoutInflater.from(mContext).inflate(R.layout.neccesary_dialog,null,false);
-       // TextView contentText = (TextView)view.findViewById(R.id.necessary_function_content);
         ImageView cancelView = (ImageView)view.findViewById(R.id.necessary_cancel_dialog);
         dialog.addContentView(view,new RelativeLayout.LayoutParams(dip2px(301),dip2px(316)));
         dialog.setCancelable(false);
         dialog.show();
-        //dialog.getWindow().setContentView(view);
         cancelView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,10 +116,17 @@ public class RuXuePresenter extends BasePresenter<BaseView>{
         databaseUtil.delete(TABLE_NECESSARY,selection,selectionArgs);
     }
 
+    public void update(String key,String values,String selection){
+        databaseUtil.update(TABLE_NECESSARY,key,values,selection);
+    }
+
     public void addContent(String name){
         view.describe(new Describe_1(name,null));
         values.put("name",name);
         values.put("content","");
+        values.put("number",200);
+        values.put("oldPosition",0);
+        values.put("property","非必需");
         databaseUtil.add(TABLE_NECESSARY,values);
     }
 

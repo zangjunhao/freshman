@@ -31,7 +31,7 @@ import rx.schedulers.Schedulers;
 
 public class HttpMethods {
     public static final String BASE_URL = "http://118.24.175.82/";
-    private static final int DEFAULT_TIMEOUT = 5;
+    private static final int DEFAULT_TIMEOUT = 8;
     private Retrofit retrofit;
 
     private HttpMethods() {

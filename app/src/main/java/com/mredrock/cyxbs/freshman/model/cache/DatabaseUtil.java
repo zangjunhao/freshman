@@ -49,4 +49,12 @@ public class DatabaseUtil {
             Cursor cursor = db.query(table,null,selection,selectionArgs,null,null,null);
         return cursor;
     }
+    public Cursor querySort(String table,String sort){
+        return db.rawQuery("select * from "+table +" order "+"by " +sort,null);
+    }
+
+    public void update(String table,String key,String value,String selection){
+        db.execSQL("update "+ table+" set "+key+"="+ value + " where "+selection);
+    }
+
 }
