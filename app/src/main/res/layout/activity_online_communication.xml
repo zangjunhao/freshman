@@ -51,6 +51,10 @@
             android:textSize="18sp"
             android:layout_height="50dp" />
     </LinearLayout>
+    <TextView
+        android:layout_width="40dp"
+        android:background="#333333"
+        android:layout_height="3dp" />
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
