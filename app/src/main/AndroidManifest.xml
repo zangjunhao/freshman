@@ -12,17 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.activity.MainActivity" />
-        <activity android:name=".view.activity.MilitaryTrainingActivity">
-        </activity>
-        <activity android:name=".view.activity.CampusStrategyActivity" />
-        <activity android:name=".view.activity.RuXueActivity">
-           <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".view.activity.MilitaryTrainingActivity" />
+        <activity android:name=".view.activity.RuXueActivity" />
+        <activity android:name=".view.activity.CampusStrategyActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".view.activity.StrategyActivity"></activity>
+        <activity android:name=".view.activity.StrategyActivity" />
+        <activity android:name=".view.activity.DataDisclosureActivity" />
+        <activity android:name=".view.activity.CollegeMessageActivity" />
+        <activity android:name=".view.activity.OnlinCommunicationActivity"></activity>
     </application>
 
 </manifest>

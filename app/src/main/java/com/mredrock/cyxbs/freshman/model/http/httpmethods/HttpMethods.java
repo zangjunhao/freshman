@@ -3,6 +3,7 @@ package com.mredrock.cyxbs.freshman.model.http.httpmethods;
 import com.mredrock.cyxbs.freshman.model.convert.CampusStrategy;
 import com.mredrock.cyxbs.freshman.model.convert.Describe;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
+import com.mredrock.cyxbs.freshman.model.convert.GetName;
 import com.mredrock.cyxbs.freshman.model.convert.JunXun;
 import com.mredrock.cyxbs.freshman.model.convert.Strategy;
 import com.mredrock.cyxbs.freshman.model.convert.StudentRoom;
@@ -84,7 +85,14 @@ public class HttpMethods {
 
     public<T> void getServiceOfGetName(Subscriber<T> s) {
 
-        Observable observable = retrofit.create(GetNameService.class).getService();
+        Observable observable = retrofit.create(GetNameService.class).getService()
+                .map(new Func1<GetName,List<String>>() {
+
+                    @Override
+                    public List<String> call(GetName getName) {
+                        return getName.getName();
+                    }
+                });
         toSubscribe(observable,s);
     }
 

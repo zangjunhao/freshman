@@ -19,11 +19,11 @@ import java.util.TreeSet;
 
 public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.ViewHolder> {
 
-    private TreeSet<Strategy> mSet;
+    private List<Strategy> mList;
     private Context mContext;
 
-    public StrategyRcAdapter(TreeSet<Strategy> mSet) {
-        this.mSet = mSet;
+    public StrategyRcAdapter(List<Strategy> list) {
+       mList = list;
     }
 
     @Override
@@ -35,11 +35,12 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Strategy strategy = mSet.pollFirst();
+        Strategy strategy = mList.get(position);
         List<String> pics = strategy.getPicture();
         int  picSize = pics.size();
+        String content = strategy.getContent();
         holder.viewNumText.setText(String.valueOf(picSize));
-        holder.contentText.setText(strategy.getContent());
+        holder.contentText.setText(content);
         List<View> viewList = new ArrayList<>();
         for (int i = 0;i<picSize;i++){
             ImageView picView = new ImageView(mContext);
@@ -48,7 +49,7 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return mSet.size();
+        return mList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

@@ -1,37 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.StrategyActivity">
+    android:orientation="vertical"
+    tools:context=".view.activity.OnlinCommunicationActivity">
     <RelativeLayout
-        android:id="@+id/necessary_app_bar"
         android:layout_width="match_parent"
         android:layout_height="33dp"
         android:background="#ff5CACFC">
         <ImageView
-            android:id="@+id/strategy_back"
+            android:id="@+id/onlin_back"
             android:layout_width="10dp"
             android:layout_height="20dp"
             android:src="@drawable/freshman_back"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"/>
         <TextView
-            android:id="@+id/strategy_name"
+            android:id="@+id/ruxue"
             android:layout_width="73dp"
             android:layout_height="18dp"
             android:textSize="15sp"
+            android:text="线上交流"
             android:gravity="center"
             android:textColor="#ffFEFEFF"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             />
     </RelativeLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/strategy_recycler_view"
-        android:layout_marginTop="33dp"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="50dp">
+        
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="班级/学院群"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_height="50dp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="老乡群"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_height="50dp" />
+    </LinearLayout>
+    <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-</RelativeLayout>
+</LinearLayout>

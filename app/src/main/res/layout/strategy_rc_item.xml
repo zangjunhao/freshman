@@ -5,33 +5,36 @@
     android:layout_height="wrap_content">
     <TextView
         android:id="@+id/campus_order"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <RelativeLayout
+        android:layout_width="50dp"
+        android:visibility="gone"
+        android:layout_height="match_parent" />
+    <LinearLayout
+        android:layout_toRightOf="@+id/campus_order"
         android:id="@+id/campus_item_up_layout"
-        android:layout_marginLeft="50dp"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <android.support.v4.view.ViewPager
             android:id="@+id/campus_item_view"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="150dp" />
         <TextView
             android:id="@+id/campus_item_view_num"
-            android:layout_width="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="30dp"
-            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </RelativeLayout>
+        </RelativeLayout>
     <TextView
         android:id="@+id/campus_item_content"
-        android:layout_below="@id/campus_item_up_layout"
-        android:layout_marginLeft="50dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textSize="15sp"
+        android:layout_height="100dp" />
+    </LinearLayout>
 
 </RelativeLayout>
