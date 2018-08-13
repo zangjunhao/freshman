@@ -14,7 +14,7 @@
         <activity android:name=".view.activity.MainActivity" />
         <activity android:name=".view.activity.MilitaryTrainingActivity" />
         <activity android:name=".view.activity.RuXueActivity" />
-        <activity android:name=".view.activity.CampusStrategyActivity">
+        <activity android:name=".view.activity.OnlineCommunicationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,8 @@
         <activity android:name=".view.activity.StrategyActivity" />
         <activity android:name=".view.activity.DataDisclosureActivity" />
         <activity android:name=".view.activity.CollegeMessageActivity" />
-        <activity android:name=".view.activity.OnlinCommunicationActivity"></activity>
+        <activity android:name=".view.activity.CampusStrategyActivity" />
+        <activity android:name=".view.activity.CQUPTStyleActivity"></activity>
     </application>
 
 </manifest>

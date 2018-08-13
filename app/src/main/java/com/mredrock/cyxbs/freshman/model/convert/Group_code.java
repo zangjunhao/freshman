@@ -1,8 +1,8 @@
 package com.mredrock.cyxbs.freshman.model.convert;
 
-public class Group_code {
+public class Group_code implements OnlineData {
     private String name;
-    private int code;
+    private String code;
 
     public String getName() {
         return name;
@@ -12,11 +12,11 @@ public class Group_code {
         this.name = name;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 }

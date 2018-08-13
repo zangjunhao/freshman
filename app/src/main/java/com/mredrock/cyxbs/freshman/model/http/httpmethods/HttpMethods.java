@@ -3,7 +3,9 @@ package com.mredrock.cyxbs.freshman.model.http.httpmethods;
 import com.mredrock.cyxbs.freshman.model.convert.CampusStrategy;
 import com.mredrock.cyxbs.freshman.model.convert.Describe;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
+import com.mredrock.cyxbs.freshman.model.convert.GetGroup;
 import com.mredrock.cyxbs.freshman.model.convert.GetName;
+import com.mredrock.cyxbs.freshman.model.convert.Group_x_y;
 import com.mredrock.cyxbs.freshman.model.convert.JunXun;
 import com.mredrock.cyxbs.freshman.model.convert.Strategy;
 import com.mredrock.cyxbs.freshman.model.convert.StudentRoom;
@@ -14,6 +16,7 @@ import com.mredrock.cyxbs.freshman.model.http.apiservice.DescribeService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.GetNameService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.HardService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.JunXunService;
+import com.mredrock.cyxbs.freshman.model.http.apiservice.OnlinekeyService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.SchoolService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.StudentRoomService;
 
@@ -74,6 +77,18 @@ public class HttpMethods {
     public<T> void getServiceOfChatGroup(Subscriber<T> s,String index) {
 
         Observable observable = retrofit.create(ChatGroupService.class).getService(index);
+        toSubscribe(observable,s);
+    }
+    public<T> void getServiceOfOnlineKey(Subscriber<T> s,String index,String key) {
+
+        Observable observable = retrofit.create(OnlinekeyService.class).getService(index,key)
+                .map(new Func1<GetGroup,List<Group_x_y>>() {
+
+                    @Override
+                    public List<Group_x_y> call(GetGroup getGroup) {
+                        return getGroup.getArray();
+                    }
+                });
         toSubscribe(observable,s);
     }
     public<T> void getServiceOfDescribe(Subscriber<T> s,String index) {
