@@ -27,7 +27,7 @@
         <activity android:name=".view.activity.OnlineCommunicationActivity" />
         <activity android:name=".view.activity.CQUPTStyleActivity" />
         <activity android:name=".view.activity.StudentBedroomActivity" />
-        <activity android:name=".view.activity.DataPatternActivity"></activity>
+        <activity android:name=".view.activity.DataPatternActivity"/>
     </application>
 
 </manifest>

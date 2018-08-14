@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mredrock.cyxbs.freshman.R;
+import com.mredrock.cyxbs.freshman.view.adapter.FreshmanPagerAdapter;
 import com.mredrock.cyxbs.freshman.view.adapter.OnlineRcAdapter;
 import com.mredrock.cyxbs.freshman.view.adapter.OnlineVpAdapter;
 
@@ -56,12 +57,14 @@ public class DataPatternActivity extends AppCompatActivity implements ViewPager.
         onlineTab.setLayoutParams(layoutParams);
         width = displayWidth/2;
         addView(0);
-        addView(1);
+        FreshmanPagerAdapter adapter = new FreshmanPagerAdapter(mList);
+        viewPager.setAdapter(adapter);
         viewPager.setOnPageChangeListener(this);
     }
 
     private void addView(final int position) {
-
+        View view = LayoutInflater.from(this).inflate(R.layout.hard_subject_item,null);
+        mList.add(view);
     }
 
 

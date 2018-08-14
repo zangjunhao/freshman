@@ -4,15 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.stream.BaseGlideUrlLoader;
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.CampusStrategy;
 import com.mredrock.cyxbs.freshman.model.convert.Strategy;
@@ -20,6 +23,7 @@ import com.mredrock.cyxbs.freshman.presenter.presenter.CampusStrategyPresenter;
 import com.mredrock.cyxbs.freshman.view.activity.DataDisclosureActivity;
 import com.mredrock.cyxbs.freshman.view.activity.StrategyActivity;
 import com.mredrock.cyxbs.freshman.view.activity.StudentBedroomActivity;
+import com.mredrock.cyxbs.freshman.view.tool.MyService;
 import com.mredrock.cyxbs.freshman.view.view.CampusView;
 
 import org.w3c.dom.Text;
@@ -40,6 +44,11 @@ public class CampusRcAdapter extends RecyclerView.Adapter<CampusRcAdapter.ViewHo
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
         View view = LayoutInflater.from(mContext).inflate(R.layout.campus_rc_item,parent,false);
+        GridLayoutManager.LayoutParams layoutParams = (GridLayoutManager.LayoutParams)view.getLayoutParams();
+        int displayWidth = MyService.getDisplayWidth(mContext);
+        layoutParams.width = displayWidth/32*9;
+        view.setLayoutParams(layoutParams);
+        ImageView imageView = (ImageView)view.findViewById(R.id.campus_item_view);
         return new ViewHolder(view);
     }
 

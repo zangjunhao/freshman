@@ -84,6 +84,7 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
         int size = pic.size();
         for (int i = 0;i<size;i++){
             ImageView imageView = new ImageView(mContext);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             Glide.with(mContext).load(pic.get(i)).into(imageView);
             imageViewList.add(imageView);
             Button button = new Button(mContext);

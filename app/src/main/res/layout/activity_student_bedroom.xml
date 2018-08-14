@@ -31,9 +31,10 @@
             android:layout_centerHorizontal="true"
             />
     </RelativeLayout>
-   <android.support.v7.widget.RecyclerView
-       android:id="@+id/bedroom_name_rc_view"
+   <LinearLayout
+       android:id="@+id/bedroom_name_layout"
        android:background="#FFFFFF"
+       android:orientation="horizontal"
        android:layout_width="match_parent"
        android:layout_height="45dp"/>
     <TextView
