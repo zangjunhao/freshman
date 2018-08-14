@@ -1,40 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:background="#FFFFFF"
     android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/campus_order"
-        android:layout_width="50dp"
-        android:visibility="gone"
-        android:layout_height="match_parent" />
     <LinearLayout
-        android:layout_toRightOf="@+id/campus_order"
         android:id="@+id/campus_item_up_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_margin="5dp">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="164dp">
         <android.support.v4.view.ViewPager
             android:id="@+id/campus_item_view"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="150dp" />
+            android:layout_height="164dp" />
         <TextView
             android:id="@+id/campus_item_view_num"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:textSize="15sp"
+            android:background="#FFA415"
+            android:textColor="#FFFFFF"
+            android:visibility="gone"
+            android:gravity="center"
+            android:layout_width="23dp"
+            android:layout_height="41dp" />
+            <LinearLayout
+                android:id="@+id/campus_indicator_layout"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </RelativeLayout>
+        <TextView
+            android:id="@+id/campus_item_name"
+            android:textSize="14sp"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
     <TextView
         android:id="@+id/campus_item_content"
         android:layout_width="match_parent"
-        android:textSize="15sp"
+        android:textColor="#999999"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
         android:layout_height="100dp" />
     </LinearLayout>
 
-</RelativeLayout>
+</android.support.v7.widget.CardView>

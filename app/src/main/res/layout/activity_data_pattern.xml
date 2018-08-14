@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F6F6"
+    android:orientation="vertical"
+    tools:context=".view.activity.OnlineCommunicationActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:background="#ff5CACFC">
+        <ImageView
+            android:id="@+id/pattern_back"
+            android:layout_width="10dp"
+            android:layout_height="20dp"
+            android:src="@drawable/freshman_back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"/>
+        <TextView
+            android:id="@+id/pattern_text"
+            android:layout_width="73dp"
+            android:layout_height="18dp"
+            android:textSize="15sp"
+            android:text="数据揭秘"
+            android:gravity="center"
+            android:textColor="#ffFEFEFF"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:layout_height="45dp">
+        <TextView
+            android:id="@+id/pattern_proportion"
+            android:layout_width="30dp"
+            android:layout_weight="1"
+            android:text="男女比例"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_height="50dp" />
+        <TextView
+            android:id="@+id/pattern_hard_subject"
+            android:layout_weight="1"
+            android:layout_width="30dp"
+            android:text="最难科目"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_height="50dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/pattern_tab"
+        android:layout_width="40dp"
+        android:layout_centerInParent="true"
+        android:background="#54ACFF"
+        android:layout_height="3dp" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pattern_view_pager"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

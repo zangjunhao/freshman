@@ -7,5 +7,6 @@
     <TextView
         android:id="@+id/online_rc_text"
         android:layout_width="match_parent"
+        android:textIsSelectable="true"
         android:layout_height="match_parent" />
 </RelativeLayout>

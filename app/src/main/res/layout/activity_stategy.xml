@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F6F6F6"
+    android:orientation="vertical"
     tools:context=".view.activity.StrategyActivity">
     <RelativeLayout
         android:id="@+id/necessary_app_bar"
@@ -28,10 +30,35 @@
             android:layout_centerHorizontal="true"
             />
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/food_top5_layout"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:background="#FFFFFF"
+        android:layout_height="48dp">
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_width="16dp"
+            android:src="@drawable/freshman_thumb"
+            android:layout_height="17dp" />
+    <TextView
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:text="最受好评的TOP5家美食"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="39dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/strategy_recycler_view"
-        android:layout_marginTop="33dp"
+        android:layout_below="@id/food_top5_layout"
+        android:background="#F6F6F6"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-</RelativeLayout>
+</LinearLayout>

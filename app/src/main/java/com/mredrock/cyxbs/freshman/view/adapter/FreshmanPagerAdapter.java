@@ -6,14 +6,14 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-public class StrategyVpAdapter extends PagerAdapter {
+public class FreshmanPagerAdapter extends PagerAdapter {
 
     private List<View> mList;
 
-    public StrategyVpAdapter() {
+    public FreshmanPagerAdapter() {
     }
 
-    public StrategyVpAdapter(List<View> mList) {
+    public FreshmanPagerAdapter(List<View> mList) {
         this.mList = mList;
     }
 

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.presenter.presenter.DataDisclosurePresenter;
-import com.mredrock.cyxbs.freshman.view.adapter.DataDRcAdapter;
+import com.mredrock.cyxbs.freshman.view.adapter.EasyRcAdapter;
 import com.mredrock.cyxbs.freshman.view.view.DataDView;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.List;
 public class DataDisclosureActivity extends AppCompatActivity implements DataDView, View.OnClickListener{
 
     private RecyclerView recyclerView;
-    private DataDRcAdapter adapter;
+    private EasyRcAdapter adapter;
     private ImageView backImag;
     private DataDisclosurePresenter presenter;
     private List<String> mList = new ArrayList<>();
@@ -51,7 +51,7 @@ public class DataDisclosureActivity extends AppCompatActivity implements DataDVi
 
     @Override
     public void onFinish() {
-        adapter = new DataDRcAdapter(mList);
+        adapter = new EasyRcAdapter(mList);
         recyclerView.setAdapter(adapter);
     }
 }

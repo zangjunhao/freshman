@@ -22,42 +22,50 @@ public class FreshmanDatabase extends SQLiteOpenHelper {
 
     public static final String CAFETERIA = "create table cafeteria("
             +"id integer primary key,"
+            +"name text,"
             +"content text,"
             +"picture text) ";
 
     public static final String BEDROOM = "create table bedroom("
             +"id integer primary key,"
+            +"name text,"
             +"content text,"
             +"picture text) ";
 
     public static final String FOOD = "create table food("
             +"id integer primary key,"
+            +"name text,"
             +"content text,"
             +"picture text) ";
 
     public static final String VIEWS = "create table views("
             +"id integer primary key,"
+            +"name text,"
             +"content text,"
             +"picture text) ";
 
     public static final String CAMPUS = "create table campus("
             +"id integer primary key,"
+            +"name text,"
             +"content text,"
             +"picture text) ";
 
     public static final String BANK = "create table bank("
             +"id integer primary key,"
+            +"name text,"
             +"content text,"
             +"picture text) ";
 
     public static final String BUS = "create table bus("
             +"id integer primary key,"
+            +"name text,"
             +"content text,"
             +"picture text) ";
 
 
     public static final String DELIVERY = "create table delivery("
             +"id integer primary key,"
+            +"name text,"
             +"content text,"
             +"picture text) ";
     public FreshmanDatabase(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

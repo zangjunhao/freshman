@@ -3,7 +3,6 @@ package com.mredrock.cyxbs.freshman.view.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +13,12 @@ import com.mredrock.cyxbs.freshman.view.activity.CollegeMessageActivity;
 
 import java.util.List;
 
-public class DataDRcAdapter extends RecyclerView.Adapter<DataDRcAdapter.ViewHolder> {
+public class EasyRcAdapter extends RecyclerView.Adapter<EasyRcAdapter.ViewHolder> {
 
     private List<String> mList;
     private Context mContext;
 
-    public DataDRcAdapter(List<String> mList) {
+    public EasyRcAdapter(List<String> mList) {
         this.mList = mList;
     }
 

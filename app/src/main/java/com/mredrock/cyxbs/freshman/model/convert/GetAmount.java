@@ -7,15 +7,15 @@ public class GetAmount {
     /*
     *接口1
      */
-    private int index;
+    private String index;
     private int amount;
     private List<String> name;
 
-    public int getIndex() {
+    public String getIndex() {
         return index;
     }
 
-    public void setIndex(int index) {
+    public void setIndex(String index) {
         this.index = index;
     }
 

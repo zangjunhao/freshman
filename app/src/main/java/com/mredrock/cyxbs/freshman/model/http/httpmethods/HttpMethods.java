@@ -3,6 +3,7 @@ package com.mredrock.cyxbs.freshman.model.http.httpmethods;
 import com.mredrock.cyxbs.freshman.model.convert.CampusStrategy;
 import com.mredrock.cyxbs.freshman.model.convert.Describe;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
+import com.mredrock.cyxbs.freshman.model.convert.GetAmount;
 import com.mredrock.cyxbs.freshman.model.convert.GetGroup;
 import com.mredrock.cyxbs.freshman.model.convert.GetName;
 import com.mredrock.cyxbs.freshman.model.convert.Group_x_y;
@@ -13,6 +14,7 @@ import com.mredrock.cyxbs.freshman.model.http.ApiException;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.CampusStrategyService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.ChatGroupService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.DescribeService;
+import com.mredrock.cyxbs.freshman.model.http.apiservice.GetAmountService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.GetNameService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.HardService;
 import com.mredrock.cyxbs.freshman.model.http.apiservice.JunXunService;
@@ -28,13 +30,14 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
+import rx.Single;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 public class HttpMethods {
-    public static final String BASE_URL = "http://118.24.175.82/";
+    public static final String BASE_URL = " https://118.24.175.82/";
     private static final int DEFAULT_TIMEOUT = 8;
     private Retrofit retrofit;
 
@@ -124,7 +127,25 @@ public class HttpMethods {
     }
 
     public<T> void getServiceOfStudentRoom(Subscriber<T> s,String name){
-        Observable observable = retrofit.create(StudentRoomService.class).getService(name);
+        Observable observable = retrofit.create(StudentRoomService.class).getService(name)
+                .map(new Func1<StudentRoom,List<Strategy>>() {
+
+                    @Override
+                    public List<Strategy> call(StudentRoom studentRoom) {
+                        return studentRoom.getArray();
+                    }
+                });
+        toSubscribe(observable,s);
+    }
+    public<T> void getServiceOfAmount(Subscriber<T> s,String index){
+        Observable observable = retrofit.create(GetAmountService.class).getService(index)
+               .map(new Func1<GetAmount,List<String>>() {
+
+                   @Override
+                   public List<String> call(GetAmount getAmount) {
+                       return getAmount.getName();
+                   }
+               });
         toSubscribe(observable,s);
     }
 

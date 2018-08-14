@@ -12,11 +12,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Group_x_y;
-import com.mredrock.cyxbs.freshman.model.convert.OnlineData;
 import com.mredrock.cyxbs.freshman.presenter.presenter.OnlineCommunicationPresenter;
 import com.mredrock.cyxbs.freshman.view.adapter.OnlineRcAdapter;
 import com.mredrock.cyxbs.freshman.view.adapter.OnlineVpAdapter;

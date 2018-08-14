@@ -4,7 +4,7 @@ import java.util.List;
 
 public class StudentRoom {
     private String name;
-    private List<Room> array;
+    private List<Strategy> array;
 
     public String getName() {
         return name;
@@ -14,11 +14,11 @@ public class StudentRoom {
         this.name = name;
     }
 
-    public List<Room> getArray() {
+    public List<Strategy> getArray() {
         return array;
     }
 
-    public void setArray(List<Room> array) {
+    public void setArray(List<Strategy> array) {
         this.array = array;
     }
 }

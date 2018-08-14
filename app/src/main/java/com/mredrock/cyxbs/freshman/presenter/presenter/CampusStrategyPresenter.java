@@ -23,12 +23,12 @@ public class CampusStrategyPresenter extends BasePresenter<CampusView> {
 
     private DatabaseUtil databaseUtil;
     private CampusView view;
-    private Context mContent;
+    private Context mContext;
     private static final HashMap<String,String> STRATEGY_TABLE = new HashMap<>();
     private Gson gson = new Gson();
     public CampusStrategyPresenter(CampusView view, Context mContext) {
         this.view = view;
-        this.mContent = mContext;
+        this.mContext = mContext;
         attachView(view,mContext);
         databaseUtil = DatabaseUtil.DatabaseUtilHelper.getInstance();
         databaseUtil.initDatabasse(mContext,"Freshman.db",4);
@@ -69,6 +69,7 @@ public class CampusStrategyPresenter extends BasePresenter<CampusView> {
                     values.put("id",strategy.getId());
                     String pictures = gson.toJson(strategy.getPicture());
                     values.put("picture",pictures );
+                    values.put("name",strategy.getName());
                     databaseUtil.add(table,values);
                 }
             }
@@ -89,9 +90,11 @@ public class CampusStrategyPresenter extends BasePresenter<CampusView> {
                     String content = cursor.getString(cursor.getColumnIndex("content"));
                     int id = cursor.getInt(cursor.getColumnIndex("id"));
                     String pictures = cursor.getString(cursor.getColumnIndex("picture"));
+                    String name = cursor.getString(cursor.getColumnIndex("name"));
                     Strategy strategy = new Strategy();
                     strategy.setContent(content);
                     strategy.setId(id);
+                    strategy.setName(name);
                     List<String> picture = gson.fromJson(pictures,new TypeToken<List<String>>(){}.getType());
                     strategy.setPicture(picture);
                     view.getData(strategy);

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Strategy;
 import com.mredrock.cyxbs.freshman.view.adapter.CampusRcAdapter;
+import com.mredrock.cyxbs.freshman.view.tool.CampusRcDecoration;
 
 import java.util.List;
 
@@ -30,5 +31,7 @@ public class CampusStrategyActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager);
         CampusRcAdapter adapter = new CampusRcAdapter();
         recyclerView.setAdapter(adapter);
+        CampusRcDecoration decoration = new CampusRcDecoration();
+        recyclerView.addItemDecoration(decoration);
     }
 }
