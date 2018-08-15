@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/PhotoRl"
+        android:layout_width="375dp"
+        android:layout_height="240dp"
+        android:clipChildren="false"
+        android:background="#ffFFFFFF">
+        <TextView
+            android:layout_marginTop="22dp"
+            android:id="@+id/junxunPhoto"
+            android:layout_width="66dp"
+            android:layout_height="18dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:layout_centerHorizontal="true"
+            android:text="军训照片"/>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/junxunPhotolist"
+            android:layout_width="250dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="160dp"
+            android:clipChildren="false"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/junxunPhoto"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="375dp"
+        android:layout_height="224dp"
+        android:background="#FFFFFF"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/PhotoRl">
+        <TextView
+            android:layout_marginTop="22dp"
+            android:id="@+id/junxunVideo"
+            android:layout_width="66dp"
+            android:layout_height="18dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:layout_centerHorizontal="true"
+            android:text="军训视频"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/junxunVideolist"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@id/junxunVideo"/>
+
+    </RelativeLayout>
+</RelativeLayout>
