@@ -41,7 +41,7 @@
             android:id="@+id/online_name_school"
             android:layout_width="30dp"
             android:layout_weight="1"
-            android:text="班级/学院群"
+            android:text="学院群"
             android:gravity="center"
             android:textSize="16sp"
             android:layout_height="50dp" />

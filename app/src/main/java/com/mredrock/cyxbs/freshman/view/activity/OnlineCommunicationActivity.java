@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Group;
@@ -23,6 +24,7 @@ import com.mredrock.cyxbs.freshman.view.adapter.OnlineVpAdapter;
 import com.mredrock.cyxbs.freshman.view.view.OnlineView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class OnlineCommunicationActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener,OnlineView,View.OnClickListener{
@@ -30,7 +32,7 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
     private OnlineVpAdapter vpAdapter;
     private ViewPager viewPager;
     private List<View> mList = new ArrayList<>();
-    private List<Group> dataList = new ArrayList<>();
+    private List<Group_x_y> dataList = new ArrayList<>();
     private TextView onlineTab;
     private LinearLayout.LayoutParams layoutParams;
     private int width;
@@ -41,6 +43,7 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
     private TextView schoolText;
     private TextView homeText;
     private int leftMargin;
+    private boolean isAdd = true;
     private LinearLayout[] searchLayouts = new LinearLayout[2];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,15 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
         vpAdapter = new OnlineVpAdapter(mList);
         viewPager.setAdapter(vpAdapter);
         viewPager.setOnPageChangeListener(this);
+        rcAdapter.onItemClick(new OnlineRcAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(String name) {
+                dataList.clear();
+                int currentItem = viewPager.getCurrentItem();
+                editTexts[currentItem].setText(name);
+                isAdd = false;
+            }
+        });
     }
 
     private void addView(final int position){
@@ -84,7 +96,7 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
         editTexts[position].addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                searchLayouts[position].setVisibility(View.INVISIBLE);
+
             }
 
             @Override
@@ -92,8 +104,10 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
                 if (charSequence!=null&&charSequence.length()>0){
                     if (position==0){
                         presenter.getData("学校群",charSequence.toString());
+                        editTexts[0].setSelection(editTexts[0].length());
                     }else {
                         presenter.getData("老乡群",charSequence.toString());
+                        editTexts[1].setSelection(editTexts[1].length());
                     }
                     dataList.clear();
                 }else {
@@ -107,6 +121,17 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
 
             }
         });
+        editTexts[position].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b){
+                    searchLayouts[position].setVisibility(View.INVISIBLE);
+                }else {
+                    searchLayouts[position].setVisibility(View.VISIBLE);
+                    editTexts[position].setText("");
+                }
+            }
+        });
     }
 
     @Override
@@ -117,7 +142,8 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
 
     @Override
     public void onPageSelected(int position) {
-
+     //   editTexts[0].clearFocus();
+    //    editTexts[1].clearFocus();
         dataList.clear();
         rcAdapter.notifyDataSetChanged();
     }
@@ -129,20 +155,15 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
 
     @Override
     public void onGetData(Group_x_y group_x_y) {
-        dataList.add(group_x_y);
+        if (dataList.size()!=1||isAdd) {
+            dataList.add(group_x_y);
+        }
     }
 
     @Override
     public void onFinish() {
         rcAdapter.notifyDataSetChanged();
-        rcAdapter.onItemClick(new OnlineRcAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Group_x_y group_x_y) {
-                mList.clear();
-                int currentItem = viewPager.getCurrentItem();
-                editTexts[currentItem].setText(group_x_y.getName());
-            }
-        });
+        isAdd = true;
     }
 
     @Override

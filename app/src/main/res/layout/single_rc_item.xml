@@ -6,7 +6,6 @@
     <TextView
         android:id="@+id/online_rc_text"
         android:layout_width="match_parent"
-        android:textIsSelectable="true"
         android:layout_centerVertical="true"
         android:textSize="16sp"
         android:textColor="#666666"
