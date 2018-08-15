@@ -231,13 +231,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.fengcai :
-//                Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
-//                startActivity(intent1);
+                Intent intent1=new Intent(MainActivity.this,CQUPTStyleActivity.class);
+                startActivity(intent1);
                 break;
 
             case R.id.junxuncao :
-                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
-                    startActivity(intent1);
+//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
+//                    startActivity(intent1);
                 break;
 
             case R.id.gonglue :
@@ -245,13 +245,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 {
                     PageNumber++;
                     PageNumberToChange();
-//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
-//                    startActivity(intent1);
+                    Intent intent3=new Intent(MainActivity.this,StrategyActivity.class);
+                    startActivity(intent3);
                 }
                 else if(PageNumber>1)
                 {
-//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
-//                    startActivity(intent1);
+                    Intent intent3=new Intent(MainActivity.this,StrategyActivity.class);
+                    startActivity(intent3);
                 }
                 break;
             case R.id.jiaoliu :
@@ -259,13 +259,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 {
                     PageNumber++;
                     PageNumberToChange();
-//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
-//                    startActivity(intent1);
+                    Intent intent4=new Intent(MainActivity.this,OnlineCommunicationActivity.class);
+                    startActivity(intent4);
                 }
                 else if(PageNumber>2)
                 {
-//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
-//                    startActivity(intent1);
+                    Intent intent4=new Intent(MainActivity.this,OnlineCommunicationActivity.class);
+                    startActivity(intent4);
                 }
                 break;
             case R.id.baodao :

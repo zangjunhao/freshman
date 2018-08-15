@@ -1,6 +1,7 @@
 package com.mredrock.cyxbs.freshman.view.view;
 
+import com.mredrock.cyxbs.freshman.model.convert.JunXun;
+
 public interface JunxunView extends BaseView {
-    void playVidio(String url);
-    void viewImage(String url);
+    void getJunxunlist(JunXun junXun);
 }
