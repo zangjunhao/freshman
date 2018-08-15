@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_add_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_search_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,12 +28,10 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="ffffff" />
-                            <entry key="height" value="29" />
-                            <entry key="outputName" value="freshman_add__29dp" />
+                            <entry key="color" value="c2c2c2" />
+                            <entry key="outputName" value="freshman_search_24dp" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\XieWujie" />
-                            <entry key="width" value="29" />
                           </map>
                         </option>
                       </PersistentState>

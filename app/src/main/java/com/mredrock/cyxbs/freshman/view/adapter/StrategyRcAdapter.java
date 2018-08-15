@@ -4,6 +4,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -37,6 +40,8 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
     public static final int ANOTHER_LAYOUT = 1;
     public static final int NOMAL_LAYOUT = 0;
     private int displayWidth;
+    private Handler handler = new Handler();
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -60,7 +65,28 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
         if (isAnotherLayout){
             holder.anotherContentText.setText(content);
             holder.anotherNameText.setText(name);
-            Glide.with(mContext).load(ImageTool.getPic().get(0)).into(holder.anotherImage);
+            ImageView imageView = holder.anotherImage;
+            final String pic = ImageTool.getPic().get(0);
+            Glide.with(mContext).load(pic).into(imageView);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final Dialog dialog = new Dialog(mContext);
+                    LinearLayout.LayoutParams params =
+                            new LinearLayout.LayoutParams(displayWidth,displayWidth/2);
+                    ImageView imageView1 = new ImageView(mContext);
+                    imageView1.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    Glide.with(mContext).load(pic).into(imageView1);
+                    dialog.setContentView(imageView1,params);
+                    dialog.show();
+                    imageView1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+                }
+            });
         }else {
             if (isFood) {
                 holder.viewNumText.setVisibility(View.VISIBLE);
@@ -82,11 +108,11 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
         layoutParams.leftMargin = dip2px(5);
         layoutParams.rightMargin = dip2px(5);
         List<View> imageViewList = new ArrayList<>();
-        ViewPager viewPager = holder.itemView;
+        final ViewPager viewPager = holder.itemView;
         final LinearLayout indicatorLayout = holder.indicatorLayout;
         int size = pic.size();
         for (int i = 0;i<size;i++){
-            ImageView imageView = new ImageView(mContext);
+            final ImageView imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             Glide.with(mContext).load(pic.get(i)).into(imageView);
             imageViewList.add(imageView);
@@ -98,14 +124,21 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
                 @Override
                 public void onClick(View view) {
                     final Dialog dialog = new Dialog(mContext,R.style.freshman_AlertDialog_style);
-                    ImageView imageView1 =(ImageView) LayoutInflater.from(mContext).inflate(R.layout.single_image_view,null);
-                    Glide.with(mContext).load(pic.get(j)).into(imageView1);
-
+                    List<View> views = new ArrayList<>();
+                    ViewPager pager = new ViewPager(mContext);
+                    for (int k = 0;k<pic.size();k++){
+                        ImageView imageView1 =(ImageView) LayoutInflater.from(mContext).inflate(R.layout.single_image_view,null);
+                        Glide.with(mContext).load(pic.get(k)).into(imageView1);
+                        views.add(imageView1);
+                    }
+                  FreshmanPagerAdapter adapter = new FreshmanPagerAdapter(views);
+                    pager.setAdapter(adapter);
                     LinearLayout.LayoutParams params =
                             new LinearLayout.LayoutParams(displayWidth,displayWidth/2);
-                    dialog.setContentView(imageView1,params);
+                    dialog.setContentView(pager,params);
                     dialog.show();
-                    imageView1.setOnClickListener(new View.OnClickListener() {
+                    pager.setCurrentItem(j);
+                    pager.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             dialog.dismiss();

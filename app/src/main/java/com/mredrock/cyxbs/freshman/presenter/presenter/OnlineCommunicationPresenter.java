@@ -4,7 +4,6 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.mredrock.cyxbs.freshman.model.convert.Group_x_y;
-import com.mredrock.cyxbs.freshman.model.convert.OnlineData;
 import com.mredrock.cyxbs.freshman.model.http.httpmethods.HttpMethods;
 import com.mredrock.cyxbs.freshman.presenter.base.BasePresenter;
 import com.mredrock.cyxbs.freshman.view.view.OnlineView;

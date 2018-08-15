@@ -1,8 +1,9 @@
 package com.mredrock.cyxbs.freshman.view.activity;
 
+
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mredrock.cyxbs.freshman.R;
+import com.mredrock.cyxbs.freshman.model.convert.Group;
 import com.mredrock.cyxbs.freshman.model.convert.Group_x_y;
 import com.mredrock.cyxbs.freshman.presenter.presenter.OnlineCommunicationPresenter;
 import com.mredrock.cyxbs.freshman.view.adapter.OnlineRcAdapter;
@@ -28,18 +30,18 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
     private OnlineVpAdapter vpAdapter;
     private ViewPager viewPager;
     private List<View> mList = new ArrayList<>();
-    private List<Group_x_y> dataList = new ArrayList<>();
+    private List<Group> dataList = new ArrayList<>();
     private TextView onlineTab;
     private LinearLayout.LayoutParams layoutParams;
     private int width;
     private RecyclerView[] recyclerViews = new RecyclerView[2];
     private OnlineRcAdapter rcAdapter;
     private EditText[] editTexts = new EditText[2];
-    private String[] hints = new String[]{"请输入学院名称/班级代号","请输入老乡"};
     private OnlineCommunicationPresenter presenter;
     private TextView schoolText;
     private TextView homeText;
     private int leftMargin;
+    private LinearLayout[] searchLayouts = new LinearLayout[2];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,7 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
         View view = LayoutInflater.from(this).inflate(R.layout.online_view_item,null);
         recyclerViews[position] = (RecyclerView)view.findViewById(R.id.online_recycler_view);
         editTexts[position] = (EditText)view.findViewById(R.id.online_auto_complete_text);
+        searchLayouts[position] = (LinearLayout)view.findViewById(R.id.online_search_layout);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerViews[position].setLayoutManager(layoutManager);
         mList.add(view);
@@ -81,7 +84,7 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
         editTexts[position].addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                searchLayouts[position].setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -114,7 +117,7 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
 
     @Override
     public void onPageSelected(int position) {
-        editTexts[position].setHint(hints[position]);
+
         dataList.clear();
         rcAdapter.notifyDataSetChanged();
     }
@@ -132,6 +135,14 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
     @Override
     public void onFinish() {
         rcAdapter.notifyDataSetChanged();
+        rcAdapter.onItemClick(new OnlineRcAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Group_x_y group_x_y) {
+                mList.clear();
+                int currentItem = viewPager.getCurrentItem();
+                editTexts[currentItem].setText(group_x_y.getName());
+            }
+        });
     }
 
     @Override

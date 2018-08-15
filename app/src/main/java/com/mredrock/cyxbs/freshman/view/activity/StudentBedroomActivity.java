@@ -100,7 +100,17 @@ public class StudentBedroomActivity extends AppCompatActivity implements Bedroom
             }else {
                 textView.setTextColor(Color.parseColor("#999999"));
             }
+            final int j = i;
             textView.setText(names[i]);
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (rcViewPager!=null&&rcViewPager.getChildCount()>=j){
+                        rcViewPager.setCurrentItem(j);
+                       initText(j);
+                    }
+                }
+            });
             textView.setGravity(Gravity.CENTER);
             nameLayout.addView(textView,layoutParams);
         }
@@ -134,6 +144,10 @@ public class StudentBedroomActivity extends AppCompatActivity implements Bedroom
 
     @Override
     public void onPageSelected(int position) {
+       initText(position);
+    }
+
+    private void initText(int position){
         for (int i = 0,size = nameLayout.getChildCount();i<size;i++){
             TextView textView =(TextView) nameLayout.getChildAt(i);
             if (position==i){
