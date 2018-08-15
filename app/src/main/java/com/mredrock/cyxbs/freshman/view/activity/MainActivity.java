@@ -1,46 +1,302 @@
 package com.mredrock.cyxbs.freshman.view.activity;
 
+import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.media.Image;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.GetName;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import rx.Subscriber;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private SharedPreferences sharedPreferences;
+    private int PageNumber=-1;
+    private ImageView RuXue;
+    private ImageView Junxun;
+    private ImageView GongLue;
+    private ImageView JiaoLiu;
+    private ImageView FengCai;
+    private ImageView BaoDao;
+    private ImageView WantToSay;
+    private ImageView car1;
+    private ImageView car2;
+    private ImageView car3;
+    private ImageView car4;
+    private ImageView car5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       Subscriber subscriber = new Subscriber<GetName>() {
-            @Override
-            public void onCompleted() {
-                Toast.makeText(MainActivity.this,"success",Toast.LENGTH_LONG).show();
-            }
+        isSaveToLocal();
+        haveSharePreference();
+        initview();
+    }
 
-            @Override
-            public void onError(Throwable e) {
-                Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
-            }
+    private void initview()
+    {
+       RuXue=(ImageView)findViewById(R.id.xiaomeng);
+       Junxun=(ImageView)findViewById(R.id.junxuncao);
+       GongLue=(ImageView)findViewById(R.id.gonglue);
+       JiaoLiu=(ImageView)findViewById(R.id.jiaoliu);
+       FengCai=(ImageView)findViewById(R.id.fengcai);
+       BaoDao=(ImageView)findViewById(R.id.baodao);
+       WantToSay=(ImageView)findViewById(R.id.wantsay);
+       car1=(ImageView)findViewById(R.id.car1);
+       car2=(ImageView)findViewById(R.id.car2);
+       car3=(ImageView)findViewById(R.id.car3);
+       car4=(ImageView)findViewById(R.id.car4);
+       car5=(ImageView)findViewById(R.id.car5);
 
+       RuXue.setOnClickListener(this);
+       Junxun.setOnClickListener(this);
+       GongLue.setOnClickListener(this);
+       JiaoLiu.setOnClickListener(this);
+       FengCai.setOnClickListener(this);
+       BaoDao.setOnClickListener(this);
+       WantToSay.setOnClickListener(this);
+       if (PageNumber>1)
+       {
+           car1.setVisibility(View.INVISIBLE);
+       }
+       initPage();
+    }
+
+    private void initPage()
+    {
+        if (PageNumber==2){
+            car2.setVisibility(View.VISIBLE);
+            GongLue.setImageResource(R.drawable.freshman_xiaoyuangong);
+
+        }
+
+        else if (PageNumber==3){
+            car3.setVisibility(View.VISIBLE);
+            GongLue.setImageResource(R.drawable.freshman_xiaoyuangong);
+            JiaoLiu.setImageResource(R.drawable.freshman_xianshang);
+        }
+        else if(PageNumber==4){
+            car4.setVisibility(View.VISIBLE);
+            GongLue.setImageResource(R.drawable.freshman_xiaoyuangong);
+            JiaoLiu.setImageResource(R.drawable.freshman_xianshang);
+            BaoDao.setImageResource(R.drawable.freshman_baodao);
+        }
+        else if(PageNumber==5){
+            car5.setVisibility(View.VISIBLE);
+            GongLue.setImageResource(R.drawable.freshman_xiaoyuangong);
+            JiaoLiu.setImageResource(R.drawable.freshman_xianshang);
+            BaoDao.setImageResource(R.drawable.freshman_baodao);
+            WantToSay.setImageResource(R.drawable.freshman_iwantsay);
+        }
+    }
+
+    private void PageNumberToChange()//多次调用进行图片的变换
+    {
+       String TAG="难受呀马飞";
+        if(PageNumber==2)
+        {
+            GongLue.setImageResource(R.drawable.freshman_xiaoyuangong);
+
+            Log.d(TAG, "PageNumberToChange: number2");
+            CarAnimator(car1,car2);
+            ChangeSharePreference();
+            return;
+        }
+        else if (PageNumber==3)
+        {
+            GongLue.setImageResource(R.drawable.freshman_xiaoyuangong);
+            JiaoLiu.setImageResource(R.drawable.freshman_xianshang);
+            Log.d(TAG, "PageNumberToChange: number3");
+
+            CarAnimator(car2,car3);
+            ChangeSharePreference();
+            return;
+        }
+        else if(PageNumber==4)
+        {
+            GongLue.setImageResource(R.drawable.freshman_xiaoyuangong);
+            JiaoLiu.setImageResource(R.drawable.freshman_xianshang);
+            BaoDao.setImageResource(R.drawable.freshman_baodao);
+            Log.d(TAG, "PageNumberToChange: number4");
+
+            CarAnimator(car3,car4);
+            ChangeSharePreference();
+            return;
+        }
+        else if(PageNumber==5)
+        {
+            GongLue.setImageResource(R.drawable.freshman_xiaoyuangong);
+            JiaoLiu.setImageResource(R.drawable.freshman_xianshang);
+            BaoDao.setImageResource(R.drawable.freshman_baodao);
+            WantToSay.setImageResource(R.drawable.freshman_iwantsay);
+            Log.d(TAG, "PageNumberToChange: number5");
+
+            CarAnimator(car4,car5);
+            ChangeSharePreference();
+            return;
+        }
+    }
+
+
+    private void CarAnimator(final ImageView carfirst, final ImageView carsecond)
+    {
+
+        String TAG="CarAnimator";
+        float carfirst_X= carfirst.getX();
+        float carfirst_Y= carfirst.getY();
+        float carsecond_X=carsecond.getX();
+        float carsecond_Y=carsecond.getY();
+        float scaleX=carsecond.getWidth()/carfirst.getWidth();
+        float scaleY=carsecond.getHeight()/carfirst.getHeight();
+        float translation_x=carfirst_X-carsecond_X;
+        float translation_y=carfirst_Y-carsecond_Y;
+        Log.d(TAG, "CarAnimator: "+carfirst_X+"  "+carfirst_Y);
+        Log.d(TAG, "CarAnimator: "+carsecond_X+"  "+carsecond_Y);
+        ObjectAnimator objectAnimator=ObjectAnimator.ofFloat(carfirst,"translationX",0,-translation_x);
+        ObjectAnimator objectAnimator1=ObjectAnimator.ofFloat(carfirst,"translationY",0,-translation_y);
+        ObjectAnimator objectAnimator2=ObjectAnimator.ofFloat(carfirst,"scaleX",1f,scaleX);
+        ObjectAnimator objectAnimator3=ObjectAnimator.ofFloat(carfirst,"scaleY",1f,scaleY);
+        AnimatorSet animatorSet=new AnimatorSet();
+        animatorSet.setDuration(2000);
+        animatorSet.setInterpolator(new AccelerateDecelerateInterpolator());
+        animatorSet.play(objectAnimator).with(objectAnimator1).with(objectAnimator2).with(objectAnimator3);
+        animatorSet.start();
+        animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
-            public void onNext(GetName getName) {
-                List<String> o = getName.getName();
-                    Log.d("MainActivity","success"+o.toString());
-                    Toast.makeText(MainActivity.this,o.toString(),Toast.LENGTH_LONG).show();
-                    for (String s:o){
-                        Log.d("MainActivity",s);
-                    }
+            public void onAnimationEnd(Animator animation) {
+                carfirst.setVisibility(View.INVISIBLE);
+                carsecond.setVisibility(View.VISIBLE);
             }
-        };
-        HashMap hashMap = new HashMap<String,String>();
-       // hashMap.put("index","学生食堂");
+        });
+    }
+
+    private  void isSaveToLocal()
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && this.checkSelfPermission(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            this.requestPermissions(new String[]{
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+            }, 1);
+        }
+    }
+
+    private void haveSharePreference()
+    {
+        sharedPreferences=getSharedPreferences("PageNumber", Context.MODE_PRIVATE);
+        PageNumber =sharedPreferences.getInt("pagenumber",-1);
+        if(PageNumber==-1)
+        {
+            PageNumber=1;
+            SharedPreferences.Editor editor=sharedPreferences.edit();
+            editor.putInt("pagenumber",PageNumber);
+            editor.commit();
+        }
+    }
+
+    private void ChangeSharePreference()
+    {
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putInt("pagenumber",PageNumber);
+        editor.commit();
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId())
+        {
+            case R.id.xiaomeng :
+                Intent intent=new Intent(MainActivity.this,RuXueActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.fengcai :
+//                Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
+//                startActivity(intent1);
+                break;
+
+            case R.id.junxuncao :
+                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
+                    startActivity(intent1);
+                break;
+
+            case R.id.gonglue :
+                if(PageNumber==1)
+                {
+                    PageNumber++;
+                    PageNumberToChange();
+//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
+//                    startActivity(intent1);
+                }
+                else if(PageNumber>1)
+                {
+//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
+//                    startActivity(intent1);
+                }
+                break;
+            case R.id.jiaoliu :
+                if(PageNumber==2)
+                {
+                    PageNumber++;
+                    PageNumberToChange();
+//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
+//                    startActivity(intent1);
+                }
+                else if(PageNumber>2)
+                {
+//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
+//                    startActivity(intent1);
+                }
+                break;
+            case R.id.baodao :
+                if(PageNumber==3)
+                {
+                    PageNumber++;
+                    PageNumberToChange();
+//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
+//                    startActivity(intent1);
+                }
+                else if(PageNumber>3)
+                {
+//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
+//                    startActivity(intent1);
+                }
+                break;
+
+            case R.id.wantsay :
+                if(PageNumber==4)
+                {
+                    PageNumber++;
+                    PageNumberToChange();
+//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
+//                    startActivity(intent1);
+                }
+                else if(PageNumber>4)
+                {
+//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
+//                    startActivity(intent1);
+                }
+                break;
+        }
     }
 }
