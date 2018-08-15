@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.presenter.presenter.DataDisclosurePresenter;
 import com.mredrock.cyxbs.freshman.view.adapter.EasyRcAdapter;
+import com.mredrock.cyxbs.freshman.view.tool.RcDecoration;
 import com.mredrock.cyxbs.freshman.view.view.DataDView;
 
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ public class DataDisclosureActivity extends AppCompatActivity implements DataDVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_disclolsure);
         recyclerView = (RecyclerView)findViewById(R.id.data_d_recycler_view);
+        RcDecoration decoration = new RcDecoration();
+        recyclerView.addItemDecoration(decoration);
         backImag = (ImageView) findViewById(R.id.data_d_back);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);

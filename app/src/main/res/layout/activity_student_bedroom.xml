@@ -38,9 +38,11 @@
        android:layout_width="match_parent"
        android:layout_height="45dp"/>
     <TextView
+        android:id="@+id/bedroom_tab_view"
         android:background="#54ACFF"
         android:layout_width="40dp"
         android:layout_height="3dp" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/bedroom_rc_view_pager"
         android:layout_marginRight="15dp"

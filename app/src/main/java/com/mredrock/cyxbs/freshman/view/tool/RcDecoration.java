@@ -4,21 +4,21 @@ import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-public class CampusRcDecoration extends RecyclerView.ItemDecoration {
+public class RcDecoration extends RecyclerView.ItemDecoration {
 
     private int left;
     private int right;
     private int top;
     private int bottom;
 
-    public CampusRcDecoration(int left, int right, int top, int bottom) {
+    public RcDecoration(int left, int right, int top, int bottom) {
         this.left = left;
         this.right = right;
         this.top = top;
         this.bottom = bottom;
     }
 
-    public CampusRcDecoration() {
+    public RcDecoration() {
         top = 35;
     }
 

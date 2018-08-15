@@ -5,23 +5,19 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Strategy;
 import com.mredrock.cyxbs.freshman.presenter.presenter.CampusStrategyPresenter;
-import com.mredrock.cyxbs.freshman.view.adapter.NecessaryRcAdapter;
 import com.mredrock.cyxbs.freshman.view.adapter.StrategyRcAdapter;
-import com.mredrock.cyxbs.freshman.view.tool.CampusRcDecoration;
+import com.mredrock.cyxbs.freshman.view.tool.RcDecoration;
 import com.mredrock.cyxbs.freshman.view.view.CampusView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
 
 public class StrategyActivity extends AppCompatActivity implements CampusView, View.OnClickListener{
 
@@ -39,7 +35,7 @@ public class StrategyActivity extends AppCompatActivity implements CampusView, V
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stategy);
         recyclerView = (RecyclerView)findViewById(R.id.strategy_recycler_view);
-        recyclerView.addItemDecoration(new CampusRcDecoration());
+        recyclerView.addItemDecoration(new RcDecoration());
         labelText = (TextView)findViewById(R.id.strategy_name);
         backImag = (ImageView)findViewById(R.id.strategy_back);
         backImag.setOnClickListener(this);

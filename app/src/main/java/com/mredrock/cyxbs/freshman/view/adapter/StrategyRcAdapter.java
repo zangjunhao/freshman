@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Strategy;
 import com.mredrock.cyxbs.freshman.view.tool.ImageTool;
+import com.mredrock.cyxbs.freshman.view.tool.MyService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +36,13 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
     public boolean isAnotherLayout = false;
     public static final int ANOTHER_LAYOUT = 1;
     public static final int NOMAL_LAYOUT = 0;
+    private int displayWidth;
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
         mContext = parent.getContext();
+        displayWidth = MyService.getDisplayWidth(mContext);
         if (viewType==NOMAL_LAYOUT) {
             view = LayoutInflater.from(mContext).inflate(R.layout.strategy_rc_item, parent, false);
         }else {
@@ -97,8 +100,9 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
                     final Dialog dialog = new Dialog(mContext,R.style.freshman_AlertDialog_style);
                     ImageView imageView1 =(ImageView) LayoutInflater.from(mContext).inflate(R.layout.single_image_view,null);
                     Glide.with(mContext).load(pic.get(j)).into(imageView1);
+
                     LinearLayout.LayoutParams params =
-                            new LinearLayout.LayoutParams(dip2px(300),dip2px(200));
+                            new LinearLayout.LayoutParams(displayWidth,displayWidth/2);
                     dialog.setContentView(imageView1,params);
                     dialog.show();
                     imageView1.setOnClickListener(new View.OnClickListener() {

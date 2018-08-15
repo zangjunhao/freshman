@@ -72,5 +72,6 @@ public class DataDisclosurePresenter extends BasePresenter<DataDView> {
                 } while (cursor.moveToNext());
             }
         }
+        view.onFinish();
     }
 }
