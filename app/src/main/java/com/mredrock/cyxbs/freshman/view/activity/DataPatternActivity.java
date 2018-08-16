@@ -1,7 +1,5 @@
 package com.mredrock.cyxbs.freshman.view.activity;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mredrock.cyxbs.freshman.R;
-import com.mredrock.cyxbs.freshman.view.CustomView.AnimatorView;
 import com.mredrock.cyxbs.freshman.view.adapter.FreshmanPagerAdapter;
 import com.mredrock.cyxbs.freshman.view.adapter.OnlineRcAdapter;
 import com.mredrock.cyxbs.freshman.view.adapter.OnlineVpAdapter;
@@ -67,10 +64,6 @@ public class DataPatternActivity extends AppCompatActivity implements ViewPager.
 
     private void addView(final int position) {
         View view = LayoutInflater.from(this).inflate(R.layout.hard_subject_item,null);
-        AnimatorView animatorView = (AnimatorView) view.findViewById(R.id.first_subject_view);
-        ValueAnimator valueAnimator = ObjectAnimator.ofInt(animatorView,"realHeight",0,100);
-        valueAnimator.setDuration(2000);
-        valueAnimator.start();
         mList.add(view);
     }
 

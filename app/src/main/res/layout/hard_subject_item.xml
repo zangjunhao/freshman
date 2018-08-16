@@ -181,21 +181,19 @@
             <RelativeLayout
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_height="match_parent">
                 <TextView
                     android:id="@+id/first_subject_name"
                     android:text="大学物理"
                     android:textSize="13sp"
-                    android:gravity="center"
                     android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
                     android:layout_height="30dp" />
 
-                <com.mredrock.cyxbs.freshman.view.CustomView.AnimatorView
+                <TextView
                     android:id="@+id/first_subject_view"
-                    android:background="#C59AFF"
                     android:layout_above="@id/first_subject_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -209,20 +207,18 @@
             <RelativeLayout
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
                 android:gravity="bottom"
                 android:layout_height="match_parent">
                 <TextView
                     android:id="@+id/second_subject_name"
                     android:text="数据结构"
-                    android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="30dp" />
 
-                <com.mredrock.cyxbs.freshman.view.CustomView.AnimatorView
+                <TextView
                     android:id="@+id/second_subject_view"
-                    android:background="#FF9DAF"
                     android:layout_above="@id/second_subject_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -236,20 +232,18 @@
             <RelativeLayout
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
                 android:gravity="bottom"
                 android:layout_height="match_parent">
                 <TextView
                     android:id="@+id/third_subject_name"
                     android:text="高等数学"
-                    android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="30dp" />
 
-                <com.mredrock.cyxbs.freshman.view.CustomView.AnimatorView
+                <TextView
                     android:id="@+id/third_subject_view"
-                    android:background="#9DB4FF"
                     android:layout_above="@id/third_subject_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
