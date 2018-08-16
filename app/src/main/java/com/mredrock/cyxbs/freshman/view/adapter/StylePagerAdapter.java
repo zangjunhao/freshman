@@ -4,12 +4,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.mredrock.cyxbs.freshman.model.convert.Strategy;
 import com.mredrock.cyxbs.freshman.view.fragment.MilitaryMienFragment;
 import com.mredrock.cyxbs.freshman.view.fragment.MilitrayHintFragment;
 import com.mredrock.cyxbs.freshman.view.fragment.StyleActivityFragment;
 import com.mredrock.cyxbs.freshman.view.fragment.StyleOrganizationFragment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by 67698 on 2018/8/16.

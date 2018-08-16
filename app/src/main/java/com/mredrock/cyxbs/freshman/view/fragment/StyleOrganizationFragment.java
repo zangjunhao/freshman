@@ -4,18 +4,19 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Strategy;
 import com.mredrock.cyxbs.freshman.presenter.presenter.CampusStrategyPresenter;
 import com.mredrock.cyxbs.freshman.view.adapter.OrganizationRecAdapter;
+import com.mredrock.cyxbs.freshman.view.adapter.StyleOrganPagerAdapter;
 import com.mredrock.cyxbs.freshman.view.view.CampusView;
 
 import java.util.ArrayList;
@@ -47,11 +48,11 @@ public class StyleOrganizationFragment extends Fragment implements CampusView{
         viewPager=(ViewPager)view.findViewById(R.id.style_organization_viewpager);
         for(int i=0;i<mList.size();i++)
         {
-            View view1=LayoutInflater.from(getContext()).inflate(R.layout.organization_tab,null);
-            TextView textView= (TextView) view1.findViewById(R.id.tab_text);
-            textView.setText(mList.get(i).getName());
-            tabLayout.addTab(tabLayout.newTab().setCustomView(view1));
+            tabLayout.addTab(tabLayout.newTab().setText(mList.get(i).getName()));
         }
+        viewPager.setAdapter(new StyleOrganPagerAdapter(getFragmentManager(),mList));
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
     }
     @Override
     public void getData(Strategy strategy) {
@@ -62,4 +63,5 @@ public class StyleOrganizationFragment extends Fragment implements CampusView{
     public void onFinish() {
 
     }
+
 }

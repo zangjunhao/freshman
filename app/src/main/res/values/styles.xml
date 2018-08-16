@@ -30,7 +30,7 @@
     </style>
 
 <style name="Mytablayout" parent="Widget.Design.TabLayout">
-    <item name="tabPaddingEnd">0dp</item>
-    <item name="tabPaddingStart">0dp</item>
+    <item name="tabPaddingEnd">50dp</item>
+    <item name="tabPaddingStart">50dp</item>
 </style>
  </resources>

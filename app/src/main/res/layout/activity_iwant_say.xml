@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:scrollbars="none"
     tools:context="com.mredrock.cyxbs.freshman.view.activity.IWantSayActivity">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/iwantsay_backgroud"/>
+        android:src="@drawable/freshman_iwantsay_backgroud"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">

@@ -9,8 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         app:tabIndicatorColor="#00000000"
-        style="@style/Mytablayout"
         app:tabTextColor="#50000000"
+        android:background="#00000000"
+        app:tabSelectedTextColor="#bb54ACFF"
+        style="@style/Mytablayout"
+        app:tabBackground="@drawable/freshman_tab"
         app:tabMode="scrollable"
         />
     <android.support.v4.view.ViewPager
