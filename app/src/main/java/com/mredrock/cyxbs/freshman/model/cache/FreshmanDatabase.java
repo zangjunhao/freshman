@@ -68,6 +68,14 @@ public class FreshmanDatabase extends SQLiteOpenHelper {
             +"name text,"
             +"content text,"
             +"picture text) ";
+
+    public static final String ORGANIZATION= "create table organization("
+            +"id integer primary key,"
+            +"name text,"
+            +"content text,"
+            +"picture text) ";
+
+
     public FreshmanDatabase(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
         mContext = context;
@@ -85,6 +93,7 @@ public class FreshmanDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(DELIVERY);
         sqLiteDatabase.execSQL(BANK);
         sqLiteDatabase.execSQL(CAMPUS);
+        sqLiteDatabase.execSQL(ORGANIZATION);
     }
 
     @Override
@@ -100,6 +109,7 @@ public class FreshmanDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("drop table if exists delivery");
         sqLiteDatabase.execSQL("drop table if exists bank");
         sqLiteDatabase.execSQL("drop table if exists campus");
+        sqLiteDatabase.execSQL("drop table if exists organization");
         onCreate(sqLiteDatabase);
     }
 

@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.activity.CQUPTStyleActivity">
-
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_style"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ff5CACFC"
+            app:contentInsetStart="0dp"
+            app:navigationIcon="@drawable/freshman_back"
+            />
+        <TextView
+            android:layout_width="73dp"
+            android:layout_height="18dp"
+            android:text="重邮风采"
+            android:gravity="center"
+            android:textColor="#ffFEFEFF"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="15sp" />
+    </RelativeLayout>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/style_tab"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_marginTop="50dp"
+        app:tabSelectedTextColor="#ff54ACFF"
+        app:tabTextColor="#ff999999"
+        android:background="#ffFFFFFF"
+        app:tabTextAppearance="@style/TabLayoutTextSize"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/style_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="91dp"/>
+</RelativeLayout>

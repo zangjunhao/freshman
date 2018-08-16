@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
 
     </style>
+
+    <style name="TabLayoutTextSize" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">16sp</item>
+
+    </style>
     //CheckboxColor
     <style name="CheckboxColor">
         <item name="colorAccent">#999999</item> //checked

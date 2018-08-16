@@ -5,19 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.mredrock.cyxbs.freshman.view.activity.MilitaryTrainingActivity">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="军训特辑"
-    android:textSize="25sp"
-    android:layout_marginTop="10dp"
-    android:layout_centerHorizontal="true"
-    />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_mi"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ff5CACFC"
+            app:contentInsetStart="0dp"
+            app:navigationIcon="@drawable/freshman_back"
+            />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="73dp"
+            android:layout_height="18dp"
+            android:text="军训特辑"
+            android:gravity="center"
+            android:textColor="#ffFEFEFF"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="15sp" />
+    </RelativeLayout>
     <android.support.design.widget.TabLayout
         android:id="@+id/military_tab"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"/>
+        android:layout_height="44dp"
+        android:layout_marginTop="50dp"
+        app:tabSelectedTextColor="#ff54ACFF"
+        app:tabTextColor="#ff999999"
+        android:background="#ffFFFFFF"
+        app:tabTextAppearance="@style/TabLayoutTextSize"/>
     <android.support.v4.view.ViewPager
         android:id="@+id/military_viewpager"
         android:layout_width="match_parent"
