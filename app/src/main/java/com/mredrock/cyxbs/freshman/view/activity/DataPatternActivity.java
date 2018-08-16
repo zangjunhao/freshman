@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mredrock.cyxbs.freshman.R;
+import com.mredrock.cyxbs.freshman.view.CustomView.BarView;
 import com.mredrock.cyxbs.freshman.view.adapter.FreshmanPagerAdapter;
 import com.mredrock.cyxbs.freshman.view.adapter.OnlineRcAdapter;
 import com.mredrock.cyxbs.freshman.view.adapter.OnlineVpAdapter;
@@ -33,6 +34,8 @@ public class DataPatternActivity extends AppCompatActivity implements ViewPager.
     private TextView subjectText;
     private ImageView backImage;
     private int leftMargin;
+    private int data[] = new int[]{101,87,84};
+    private String[] names = new String[]{"大学物理","数据结构","高等数学"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +66,9 @@ public class DataPatternActivity extends AppCompatActivity implements ViewPager.
     }
 
     private void addView(final int position) {
-        View view = LayoutInflater.from(this).inflate(R.layout.hard_subject_item,null);
-        mList.add(view);
+        BarView barView = new BarView(this,data,names,2000);
+        mList.add(barView);
+        barView.startAnimator();
     }
 
 
