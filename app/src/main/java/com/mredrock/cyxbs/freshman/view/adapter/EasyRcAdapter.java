@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mredrock.cyxbs.freshman.R;
-import com.mredrock.cyxbs.freshman.view.activity.CollegeMessageActivity;
+import com.mredrock.cyxbs.freshman.view.activity.DataPatternActivity;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class EasyRcAdapter extends RecyclerView.Adapter<EasyRcAdapter.ViewHolder
         holder.nameText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, CollegeMessageActivity.class);
+                Intent intent = new Intent(mContext, DataPatternActivity.class);
                 intent.putExtra("name",name);
                 mContext.startActivity(intent);
             }
