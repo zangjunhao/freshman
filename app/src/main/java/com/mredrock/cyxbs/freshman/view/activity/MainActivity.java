@@ -236,8 +236,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.junxuncao :
-//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
-//                    startActivity(intent1);
+                    Intent intent2=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
+                    startActivity(intent2);
                 break;
 
             case R.id.gonglue :
