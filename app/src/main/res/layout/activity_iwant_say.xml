@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.mredrock.cyxbs.freshman.view.activity.IWantSayActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/iwantsay_backgroud"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_WantSay"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ff5CACFC"
+            app:contentInsetStart="0dp"
+            app:navigationIcon="@drawable/freshman_back"
+            />
+        <TextView
+            android:layout_width="89dp"
+            android:layout_height="18dp"
+            android:text="我想对你说"
+            android:gravity="center"
+            android:textColor="#ffFEFEFF"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="15sp" />
+    </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

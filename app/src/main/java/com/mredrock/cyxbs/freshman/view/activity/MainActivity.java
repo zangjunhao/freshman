@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.mredrock.cyxbs.freshman.R;
+import com.mredrock.cyxbs.freshman.model.convert.CampusStrategy;
 import com.mredrock.cyxbs.freshman.model.convert.GetName;
 
 import java.util.ArrayList;
@@ -245,12 +246,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 {
                     PageNumber++;
                     PageNumberToChange();
-                    Intent intent3=new Intent(MainActivity.this,StrategyActivity.class);
+                    Intent intent3=new Intent(MainActivity.this,CampusStrategyActivity.class);
                     startActivity(intent3);
                 }
                 else if(PageNumber>1)
                 {
-                    Intent intent3=new Intent(MainActivity.this,StrategyActivity.class);
+                    Intent intent3=new Intent(MainActivity.this,CampusStrategyActivity.class);
                     startActivity(intent3);
                 }
                 break;
@@ -273,13 +274,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 {
                     PageNumber++;
                     PageNumberToChange();
-//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
-//                    startActivity(intent1);
+                    Intent intent5=new Intent(MainActivity.this,BaoDaoActivity.class);
+                    startActivity(intent5);
                 }
                 else if(PageNumber>3)
                 {
-//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
-//                    startActivity(intent1);
+                    Intent intent5=new Intent(MainActivity.this,BaoDaoActivity.class);
+                    startActivity(intent5);
                 }
                 break;
 
@@ -288,13 +289,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 {
                     PageNumber++;
                     PageNumberToChange();
-//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
-//                    startActivity(intent1);
+                    Intent intent6=new Intent(MainActivity.this,IWantSayActivity.class);
+                    startActivity(intent6);
                 }
                 else if(PageNumber>4)
                 {
-//                    Intent intent1=new Intent(MainActivity.this,MilitaryTrainingActivity.class);
-//                    startActivity(intent1);
+                    Intent intent6=new Intent(MainActivity.this,IWantSayActivity.class);
+                    startActivity(intent6);
                 }
                 break;
         }
