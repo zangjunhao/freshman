@@ -18,7 +18,11 @@
         <activity android:name=".view.activity.OnlineCommunicationActivity" />
         <activity android:name=".view.activity.MilitaryTrainingActivity" />
         <activity android:name=".view.activity.RuXueActivity" />
+<<<<<<< HEAD
+        <activity android:name=".view.activity.CampusStrategyActivity">
+=======
         <activity android:name=".view.activity.MainActivity">
+>>>>>>> 73acde05c76c5a40e1c3e1923a3c01f51b7fb6f1
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,8 +31,7 @@
         </activity>
         <activity android:name=".view.activity.StrategyActivity" />
         <activity android:name=".view.activity.DataDisclosureActivity" />
-        <activity android:name=".view.activity.CollegeMessageActivity" />
-        <activity android:name=".view.activity.CampusStrategyActivity" />
+        <activity android:name=".view.activity.OnlineCommunicationActivity" />
         <activity android:name=".view.activity.CQUPTStyleActivity" />
         <activity android:name=".view.activity.StudentBedroomActivity" />
         <activity android:name=".view.activity.DataPatternActivity" />
