@@ -46,7 +46,7 @@ public class Junxun_hintPresenter extends BasePresenter {
                 for (int i = 0;i<size;i++){
                     Describe_1 describe_1 = describe_1s.get(i);
                     Log.d("Freshman", "onNext:调用 ");
-                    junxunHintView.getJunxunHint(describe_1.getContent());
+                    junxunHintView.getJunxunHint(describe_1.getContent(),describe_1.getId());
                 }
             }
         };

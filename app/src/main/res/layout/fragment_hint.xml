@@ -9,11 +9,49 @@
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="5dp"
         android:layout_margin="15dp">
-        <TextView
-            android:id="@+id/junxunHint"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="22dp"
-            android:text="军训小贴士"/>
+            android:layout_margin="22dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/junxunHint1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#333333"/>
+            <TextView
+                android:id="@+id/junxunHint2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#666666"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/junxunHint1"
+                />
+
+                <TextView
+                    android:id="@+id/junxunHint3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/junxunHint2"
+                    />
+                <TextView
+                    android:id="@+id/junxunHint4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#666666"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/junxunHint3"
+                    />
+            </RelativeLayout>
+
+        </ScrollView>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

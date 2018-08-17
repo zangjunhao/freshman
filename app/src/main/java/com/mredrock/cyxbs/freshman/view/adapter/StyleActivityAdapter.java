@@ -1,6 +1,8 @@
 package com.mredrock.cyxbs.freshman.view.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +36,16 @@ public class StyleActivityAdapter extends RecyclerView.Adapter<StyleActivityAdap
 
     @Override
     public void onBindViewHolder(StyleActivityViewHolder holder, int position) {
-
+            TextView textView=holder.title;
+            textView.setText(list.get(position).getName());
+            TextView textView1=holder.content;
+            textView1.setText(list.get(position).getContent());
+            RecyclerView recyclerView=holder.recyclerView;
+            recyclerView.setAdapter(new StyleAdapter_Adapter(list.get(position).getPicture(),context));
+        final LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(context ,LinearLayoutManager.HORIZONTAL,false);
+        recyclerView.setLayoutManager(linearLayoutManager1);
+        PagerSnapHelper pagerSnapHelper=new PagerSnapHelper();
+            pagerSnapHelper.attachToRecyclerView(recyclerView);
     }
 
     @Override

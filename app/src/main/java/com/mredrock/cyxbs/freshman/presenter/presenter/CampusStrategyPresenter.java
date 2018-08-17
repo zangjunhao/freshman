@@ -45,6 +45,7 @@ public class CampusStrategyPresenter extends BasePresenter<CampusView> {
         STRATEGY_TABLE.put("快递收发","delivery");
         STRATEGY_TABLE.put("学生组织","organization");
         STRATEGY_TABLE.put("大型活动","activity");
+        STRATEGY_TABLE.put("报道流程","baodao");
     }
     private Subscriber<List<Strategy>> getSubscriber(String index){
         final String table = STRATEGY_TABLE.get(index);

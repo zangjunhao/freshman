@@ -49,7 +49,7 @@ public class StyleOrganization_fragment_fragment extends Fragment{
         textView1.setText(content);
         final ImageView imageView1=(ImageView)view.findViewById(R.id.style_organization_heshang);
         ImageView imageView=(ImageView)view.findViewById(R.id.style_organization_image1);
-       Glide.with(getContext()).load(imageurl).into(imageView);
+       Glide.with(getContext()).load("http://47.106.33.112:8080/welcome2018"+imageurl).into(imageView);
        imageView1.setOnClickListener(new View.OnClickListener() {
 
            @Override
