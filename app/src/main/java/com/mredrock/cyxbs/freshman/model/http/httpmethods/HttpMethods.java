@@ -1,5 +1,6 @@
 package com.mredrock.cyxbs.freshman.model.http.httpmethods;
 
+import com.mredrock.cyxbs.freshman.model.convert.BelowSubject;
 import com.mredrock.cyxbs.freshman.model.convert.CampusStrategy;
 import com.mredrock.cyxbs.freshman.model.convert.Describe;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
@@ -7,6 +8,7 @@ import com.mredrock.cyxbs.freshman.model.convert.GetAmount;
 import com.mredrock.cyxbs.freshman.model.convert.GetGroup;
 import com.mredrock.cyxbs.freshman.model.convert.GetName;
 import com.mredrock.cyxbs.freshman.model.convert.Group_x_y;
+import com.mredrock.cyxbs.freshman.model.convert.HardSubject;
 import com.mredrock.cyxbs.freshman.model.convert.JunXun;
 import com.mredrock.cyxbs.freshman.model.convert.Strategy;
 import com.mredrock.cyxbs.freshman.model.convert.StudentRoom;
@@ -116,7 +118,14 @@ public class HttpMethods {
 
     public<T> void getServiceOfHardSubject(Subscriber<T> s,String name) {
 
-        Observable observable = retrofit.create(HardService.class).getService(name);
+        Observable observable = retrofit.create(HardService.class).getService(name)
+                .map(new Func1<HardSubject,List<BelowSubject>>() {
+
+                    @Override
+                    public List<BelowSubject> call(HardSubject hardSubject) {
+                        return hardSubject.getArray();
+                    }
+                });
         toSubscribe(observable,s);
     }
 
