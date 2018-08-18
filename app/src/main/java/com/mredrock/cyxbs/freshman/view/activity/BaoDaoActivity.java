@@ -11,6 +11,7 @@ import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Strategy;
 import com.mredrock.cyxbs.freshman.presenter.presenter.CampusStrategyPresenter;
 import com.mredrock.cyxbs.freshman.view.adapter.BaoDaoAdapter;
+import com.mredrock.cyxbs.freshman.view.tool.MyService;
 import com.mredrock.cyxbs.freshman.view.view.CampusView;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class BaoDaoActivity extends AppCompatActivity implements CampusView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bao_dao);
+        MyService.setStatusBar(this);
         CampusStrategyPresenter campusStrategyPresenter=new CampusStrategyPresenter(this,this);
         campusStrategyPresenter.addData("报道流程",1,10);
         RecyclerView recyclerView= (RecyclerView) findViewById(R.id.BaoDao_rec);

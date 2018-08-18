@@ -66,7 +66,7 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
             holder.anotherNameText.setText(name);
             ImageView imageView = holder.anotherImage;
             final String pic = pics.get(0);
-            Glide.with(mContext).load(pic).into(imageView);
+            Glide.with(mContext).load("http://47.106.33.112:8080/welcome2018"+pic).into(imageView);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -75,7 +75,7 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
                             new LinearLayout.LayoutParams(displayWidth,displayWidth/2);
                     ImageView imageView1 = new ImageView(mContext);
                     imageView1.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    Glide.with(mContext).load(pic).into(imageView1);
+                    Glide.with(mContext).load("http://47.106.33.112:8080/welcome2018"+pic).into(imageView1);
                     dialog.setContentView(imageView1,params);
                     dialog.show();
                     imageView1.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +116,7 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
         for (int i = 0;i<size;i++){
             final ImageView imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            Glide.with(mContext).load(pic.get(i)).into(imageView);
+            Glide.with(mContext).load("http://47.106.33.112:8080/welcome2018"+pic.get(i)).into(imageView);
             imageViewList.add(imageView);
             Button button = new Button(mContext);
             button.setBackgroundResource(R.drawable.freshman_indicator_unselect);
@@ -130,7 +130,7 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
                     ViewPager pager = new ViewPager(mContext);
                     for (int k = 0;k<pic.size();k++){
                         ImageView imageView1 =(ImageView) LayoutInflater.from(mContext).inflate(R.layout.single_image_view,null);
-                        Glide.with(mContext).load(pic.get(k)).into(imageView1);
+                        Glide.with(mContext).load("http://47.106.33.112:8080/welcome2018"+pic.get(k)).into(imageView1);
                         views.add(imageView1);
                     }
                   FreshmanPagerAdapter adapter = new FreshmanPagerAdapter(views);

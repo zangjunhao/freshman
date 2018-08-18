@@ -20,6 +20,7 @@ import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 import com.mredrock.cyxbs.freshman.presenter.presenter.RuXuePresenter;
 import com.mredrock.cyxbs.freshman.view.adapter.NecessaryRcAdapter;
+import com.mredrock.cyxbs.freshman.view.tool.MyService;
 import com.mredrock.cyxbs.freshman.view.view.RuXueView;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -46,6 +47,7 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_necessary);
+        MyService.setStatusBar(this);
         detaiFunctionView = (ImageView)findViewById(R.id.necessary_detail_function);
         recyclerView = (RecyclerView)findViewById(R.id.necessary_rc_view);
         floatingActionButton = (FloatingActionButton)findViewById(R.id.necessary_float_button);

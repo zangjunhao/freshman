@@ -10,26 +10,25 @@
     tools:context=".view.activity.OnlineCommunicationActivity">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="33dp"
-        android:background="#ff5CACFC">
-        <ImageView
-            android:id="@+id/onlin_back"
-            android:layout_width="10dp"
-            android:layout_height="20dp"
-            android:src="@drawable/freshman_back"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"/>
+        android:layout_height="50dp">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_online"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ff5CACFC"
+            app:contentInsetStart="0dp"
+            app:navigationIcon="@drawable/freshman_back"
+            />
         <TextView
-            android:id="@+id/ruxue"
+            android:id="@+id/online_title"
             android:layout_width="73dp"
             android:layout_height="18dp"
-            android:textSize="15sp"
             android:text="线上交流"
             android:gravity="center"
             android:textColor="#ffFEFEFF"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            />
+            android:textSize="15sp" />
     </RelativeLayout>
 
     <LinearLayout

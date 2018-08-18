@@ -8,27 +8,26 @@
     android:orientation="vertical"
     tools:context=".view.activity.StrategyActivity">
     <RelativeLayout
-        android:id="@+id/necessary_app_bar"
         android:layout_width="match_parent"
-        android:layout_height="33dp"
-        android:background="#ff5CACFC">
-        <ImageView
-            android:id="@+id/strategy_back"
-            android:layout_width="10dp"
-            android:layout_height="20dp"
-            android:src="@drawable/freshman_back"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"/>
+        android:layout_height="50dp">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_gonglue_2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ff5CACFC"
+            app:contentInsetStart="0dp"
+            app:navigationIcon="@drawable/freshman_back"
+            />
         <TextView
             android:id="@+id/strategy_name"
-            android:layout_width="73dp"
+            android:layout_width="89dp"
             android:layout_height="18dp"
-            android:textSize="15sp"
+            android:text="校园攻略"
             android:gravity="center"
             android:textColor="#ffFEFEFF"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            />
+            android:textSize="15sp" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/food_top5_layout"

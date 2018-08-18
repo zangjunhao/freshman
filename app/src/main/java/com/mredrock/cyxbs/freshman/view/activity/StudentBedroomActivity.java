@@ -1,6 +1,8 @@
 package com.mredrock.cyxbs.freshman.view.activity;
 
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Strategy;
@@ -24,7 +27,7 @@ import com.mredrock.cyxbs.freshman.view.view.BedroomView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentBedroomActivity extends AppCompatActivity implements BedroomView,View.OnClickListener,ViewPager.OnPageChangeListener {
+public class StudentBedroomActivity extends AppCompatActivity implements BedroomView,ViewPager.OnPageChangeListener {
 
 
     private LinearLayout nameLayout;
@@ -39,18 +42,26 @@ public class StudentBedroomActivity extends AppCompatActivity implements Bedroom
     private TextView tabView;
     private  int leftMargin;
     private  LinearLayout.LayoutParams tabParams;
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_bedroom);
+        MyService.setStatusBar(this);
         nameLayout = (LinearLayout) findViewById(R.id.bedroom_name_layout);
         rcViewPager= (ViewPager)findViewById(R.id.bedroom_rc_view_pager);
-        backImage = (ImageView)findViewById(R.id.bedroom_back);
         tabView = (TextView)findViewById(R.id.bedroom_tab_view);
         displaySize = getWindowManager().getDefaultDisplay().getWidth();
         presenter = new StudentBedRoomPresenter(this,this);
         vpAdapter =  new StrategyRcAdapter(mList);
-        backImage.setOnClickListener(this);
+        android.support.v7.widget.Toolbar toolbar= (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_qingshi);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         initName();
         initViewPager();
 
@@ -127,13 +138,7 @@ public class StudentBedroomActivity extends AppCompatActivity implements Bedroom
      //   initViewPager();
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.bedroom_back:
-                finish();
-        }
-    }
+
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

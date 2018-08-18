@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import com.mredrock.cyxbs.freshman.model.convert.Group_x_y;
 import com.mredrock.cyxbs.freshman.presenter.presenter.OnlineCommunicationPresenter;
 import com.mredrock.cyxbs.freshman.view.adapter.OnlineRcAdapter;
 import com.mredrock.cyxbs.freshman.view.adapter.OnlineVpAdapter;
+import com.mredrock.cyxbs.freshman.view.tool.MyService;
 import com.mredrock.cyxbs.freshman.view.view.OnlineView;
 
 import java.util.ArrayList;
@@ -49,6 +51,7 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_communication);
+        MyService.setStatusBar(this);
         viewPager = (ViewPager)findViewById(R.id.online_view_pager);
         onlineTab = (TextView)findViewById(R.id.online_tab);
         schoolText = (TextView)findViewById(R.id.online_name_school);
@@ -56,6 +59,13 @@ public class OnlineCommunicationActivity extends AppCompatActivity implements Vi
         presenter = new OnlineCommunicationPresenter(this,this);
         schoolText.setOnClickListener(this);
         homeText.setOnClickListener(this);
+        android.support.v7.widget.Toolbar toolbar= (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_online);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         initView();
     }
 

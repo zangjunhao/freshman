@@ -64,7 +64,7 @@ public class BaoDaoAdapter extends RecyclerView.Adapter<BaoDaoAdapter.BaoDaoAdap
                 intent.putExtra("image2","http://47.106.33.112:8080/welcome2018"+list.get(position).getPicture().get(1));
                 intent.putExtra("buzou",buzou[position]);
                 activity.startActivity(intent);
-                activity.overridePendingTransition(0,0);
+                activity.overridePendingTransition(R.anim.freshman_act,R.anim.freshman_act);
             }
         });
     }

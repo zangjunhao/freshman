@@ -17,6 +17,7 @@ import com.mredrock.cyxbs.freshman.presenter.presenter.HardSubjectPresenter;
 import com.mredrock.cyxbs.freshman.view.CustomView.BarView;
 import com.mredrock.cyxbs.freshman.view.CustomView.RoundView;
 import com.mredrock.cyxbs.freshman.view.adapter.FreshmanPagerAdapter;
+import com.mredrock.cyxbs.freshman.view.tool.MyService;
 import com.mredrock.cyxbs.freshman.view.view.PatternView;
 
 import java.util.ArrayList;
@@ -55,7 +56,14 @@ public class DataPatternActivity extends AppCompatActivity implements ViewPager.
         onlineTab = (TextView)findViewById(R.id.pattern_tab);
         proportionText = (TextView)findViewById(R.id.pattern_proportion);
         subjectText = (TextView)findViewById(R.id.pattern_hard_subject);
-        backImage = (ImageView)findViewById(R.id.pattern_back);
+        MyService.setStatusBar(this);
+        android.support.v7.widget.Toolbar toolbar= (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_shuju_1);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         presenter = new HardSubjectPresenter(this,this);
          name = getIntent().getStringExtra("name");
         presenter.getData(name);
@@ -72,7 +80,6 @@ public class DataPatternActivity extends AppCompatActivity implements ViewPager.
         width = displayWidth/2;
         proportionText.setOnClickListener(this);
         subjectText.setOnClickListener(this);
-        backImage.setOnClickListener(this);
         viewPager.setOnPageChangeListener(this);
     }
 
@@ -130,9 +137,6 @@ public class DataPatternActivity extends AppCompatActivity implements ViewPager.
                 break;
             case R.id.pattern_proportion:
                 viewPager.setCurrentItem(0);
-                break;
-            case R.id.pattern_back:
-                finish();
                 break;
         }
     }

@@ -10,6 +10,7 @@ import android.view.View;
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.view.adapter.MilitaryViewPagerAdapter;
 import com.mredrock.cyxbs.freshman.view.adapter.StylePagerAdapter;
+import com.mredrock.cyxbs.freshman.view.tool.MyService;
 import com.mredrock.cyxbs.freshman.view.tool.ReflexChangeTab;
 
 public class CQUPTStyleActivity extends AppCompatActivity {
@@ -18,6 +19,7 @@ public class CQUPTStyleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cquptstyle);
+        MyService.setStatusBar(this);
         initview();
     }
     private void initview()

@@ -118,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             GongLue.setImageResource(R.drawable.freshman_xiaoyuangong);
 
             Log.d(TAG, "PageNumberToChange: number2");
-            CarAnimator(car1,car2);
             ChangeSharePreference();
             return;
         }
@@ -128,7 +127,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             JiaoLiu.setImageResource(R.drawable.freshman_xianshang);
             Log.d(TAG, "PageNumberToChange: number3");
 
-            CarAnimator(car2,car3);
             ChangeSharePreference();
             return;
         }
@@ -139,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             BaoDao.setImageResource(R.drawable.freshman_baodao);
             Log.d(TAG, "PageNumberToChange: number4");
 
-            CarAnimator(car3,car4);
             ChangeSharePreference();
             return;
         }
@@ -151,14 +148,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             WantToSay.setImageResource(R.drawable.freshman_iwantsay);
             Log.d(TAG, "PageNumberToChange: number5");
 
-            CarAnimator(car4,car5);
             ChangeSharePreference();
             return;
         }
     }
 
 
-    private void CarAnimator(final ImageView carfirst, final ImageView carsecond)
+    private void CarAnimator(final ImageView carfirst, final ImageView carsecond, final Intent intent)
     {
 
         String TAG="CarAnimator";
@@ -186,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onAnimationEnd(Animator animation) {
                 carfirst.setVisibility(View.INVISIBLE);
                 carsecond.setVisibility(View.VISIBLE);
+                startActivity(intent);
             }
         });
     }
@@ -245,9 +242,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(PageNumber==1)
                 {
                     PageNumber++;
-                    PageNumberToChange();
+
                     Intent intent3=new Intent(MainActivity.this,CampusStrategyActivity.class);
-                    startActivity(intent3);
+                   CarAnimator(car1,car2,intent3);
                 }
                 else if(PageNumber>1)
                 {
@@ -261,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     PageNumber++;
                     PageNumberToChange();
                     Intent intent4=new Intent(MainActivity.this,OnlineCommunicationActivity.class);
-                    startActivity(intent4);
+                    CarAnimator(car2,car3,intent4);
                 }
                 else if(PageNumber>2)
                 {
@@ -275,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     PageNumber++;
                     PageNumberToChange();
                     Intent intent5=new Intent(MainActivity.this,BaoDaoActivity.class);
-                    startActivity(intent5);
+                    CarAnimator(car3,car4,intent5);
                 }
                 else if(PageNumber>3)
                 {
@@ -290,7 +287,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     PageNumber++;
                     PageNumberToChange();
                     Intent intent6=new Intent(MainActivity.this,IWantSayActivity.class);
-                    startActivity(intent6);
+                    CarAnimator(car4,car5,intent6);
                 }
                 else if(PageNumber>4)
                 {

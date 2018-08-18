@@ -2,6 +2,7 @@ package com.mredrock.cyxbs.freshman.presenter.presenter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -41,12 +42,12 @@ public class JunxunPresenter extends BasePresenter {
         return new Subscriber<JunXun>() {
             @Override
             public void onCompleted() {
-
+                Log.d("junxun", "getData: onCompleted");
             }
 
             @Override
             public void onError(Throwable e) {
-
+                Log.d("junxun", "getData: onError");
             }
 
             @Override
@@ -57,6 +58,7 @@ public class JunxunPresenter extends BasePresenter {
     }
     public void getData(){
         HttpMethods.getInstance().getServiceOfJunxun(getSubscriber());
+        Log.d("junxun", "getData: ");
     }
     private int dip2px(int dp)
     {

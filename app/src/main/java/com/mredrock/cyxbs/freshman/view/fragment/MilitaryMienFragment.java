@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.Scroller;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
@@ -40,8 +41,6 @@ public class MilitaryMienFragment extends Fragment implements JunxunView {
     private RecyclerView PhotoList;
     private RecyclerView VideoList;
     private LayoutInflater mLayoutInflater;
-    int currentItem=1;
-    private int isFrist=0;
     JunXun junXun= new JunXun();
     private JunxunPresenter junxunPresenter;
     ViewPager viewPager;
@@ -62,17 +61,12 @@ public class MilitaryMienFragment extends Fragment implements JunxunView {
         junxunPresenter=new JunxunPresenter(this,getContext());
         junxunPresenter.getData();
         mLayoutInflater = LayoutInflater.from(getContext());
-        List<String> list=new ArrayList<>();
-        for(int i=0;i<Photo.length;i++)
-        {
-            list.add(Photo[i]);
-        }
         VideoList=(RecyclerView)view.findViewById(R.id.junxunVideolist);
         final LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         VideoList.setLayoutManager(linearLayoutManager1);
         MilitaryVideoAdapter militaryVideoAdapter=new MilitaryVideoAdapter();
         VideoList.setAdapter(militaryVideoAdapter);
-        junXun.setPicture(list);
+
         viewPager= (ViewPager) view.findViewById(R.id.junxunPhotolist);
         viewPager.setAdapter(new MyAdapter());
         initViewPagerScroll();
@@ -87,6 +81,7 @@ public class MilitaryMienFragment extends Fragment implements JunxunView {
     @Override
     public void getJunxunlist(JunXun junXun ) {
         this.junXun=junXun;
+
     }
 
 
@@ -109,12 +104,14 @@ public class MilitaryMienFragment extends Fragment implements JunxunView {
             position = position % junXun.getPicture().size();
             View view = mLayoutInflater.inflate(R.layout.item_viewpager, container, false);
             ImageView img = (ImageView) view.findViewById(R.id.viewpager_image);
-            Glide.with(getContext()).load(junXun.getPicture().get(position)).into(img);
+            TextView textView=(TextView) view.findViewById(R.id.junxunPhoto_name) ;
+            textView.setText(junXun.getPicture().get(position).getName());
+            Glide.with(getContext()).load(junXun.getPicture().get(position).getUrl()).into(img);
             final int finalPosition = position;
             img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    junxunPresenter.showPhoto(junXun.getPicture().get(finalPosition));
+                    junxunPresenter.showPhoto(junXun.getPicture().get(finalPosition).getUrl());
                 }
             });
             container.addView(view);

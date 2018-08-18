@@ -39,7 +39,6 @@ public class Main2Activity extends AppCompatActivity {
         content1.setMaxLines(10000);
         content1.setText(content);
         buzhou.setText(buzou);
-        heshang.setImageResource(R.drawable.freshman_hes_down);
         android.support.v7.widget.Toolbar toolbar= (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_baodao_activity_1);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,8 +50,7 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                overridePendingTransition(0,0);
-                content1.setMaxLines(4);
+                overridePendingTransition(R.anim.freshman_act,R.anim.freshman_act);
             }
         });
 

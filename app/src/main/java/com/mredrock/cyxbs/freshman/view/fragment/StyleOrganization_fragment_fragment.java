@@ -60,7 +60,7 @@ public class StyleOrganization_fragment_fragment extends Fragment{
 
                    textView1.setMaxLines(6);
                    isHeshang=1;
-                   imageView1.setImageResource(R.drawable.freshman_hes_down);
+                   imageView1.setImageResource(R.drawable.freshman_hes_up);
                }
                else if(isHeshang==1)
                {
