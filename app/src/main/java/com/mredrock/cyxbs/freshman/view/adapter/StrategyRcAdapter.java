@@ -40,7 +40,6 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
     public static final int ANOTHER_LAYOUT = 1;
     public static final int NOMAL_LAYOUT = 0;
     private int displayWidth;
-    private Handler handler = new Handler();
 
 
     @Override
@@ -108,8 +107,11 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
         layoutParams.leftMargin = dip2px(5);
         layoutParams.rightMargin = dip2px(5);
         List<View> imageViewList = new ArrayList<>();
+        imageViewList.clear();
         final ViewPager viewPager = holder.itemView;
+        viewPager.removeAllViews();
         final LinearLayout indicatorLayout = holder.indicatorLayout;
+        indicatorLayout.removeAllViews();
         int size = pic.size();
         for (int i = 0;i<size;i++){
             final ImageView imageView = new ImageView(mContext);
@@ -146,6 +148,9 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
                     });
                 }
             });
+            if (i>2){
+                break;
+            }
         }
         FreshmanPagerAdapter adapter = new FreshmanPagerAdapter(imageViewList);
         viewPager.setAdapter(adapter);

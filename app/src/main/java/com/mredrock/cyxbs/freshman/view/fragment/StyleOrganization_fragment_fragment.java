@@ -65,7 +65,7 @@ public class StyleOrganization_fragment_fragment extends Fragment{
                else if(isHeshang==1)
                {
                    textView1.setMaxLines(10000);
-                   imageView1.setImageResource(R.drawable.freshman_hes_up);
+                   imageView1.setImageResource(R.drawable.freshman_hes_down);
                    isHeshang=0;
                }
            }

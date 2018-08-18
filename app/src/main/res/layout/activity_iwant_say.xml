@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/freshman_iwantsay_backgroud"/>
+        android:src="@drawable/freshman_iwantsay_s"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">

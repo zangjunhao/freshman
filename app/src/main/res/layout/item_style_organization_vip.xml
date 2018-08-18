@@ -39,7 +39,7 @@
         android:id="@+id/style_organization_heshang"
         android:layout_width="33dp"
         android:layout_height="20dp"
-        android:src="@drawable/freshman_hes_up"
+        android:src="@drawable/freshman_hes_down"
         android:layout_below="@id/style_organization_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"

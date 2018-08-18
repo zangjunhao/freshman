@@ -49,7 +49,9 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_necessary,parent,false);
-        return new ViewHolder(view);
+        ViewHolder viewHolder = new ViewHolder(view);
+        viewHolder.setIsRecyclable(false);
+        return viewHolder;
     }
 
     @Override
@@ -125,6 +127,9 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
             public void onCheckedChanged(CompoundButton compoundButton, boolean ischeck) {
                 if (!isDelete) {
                     int oldPosition = (int)checkBox.getTag();
+                    if (oldPosition<=selectedNum){
+                       oldPosition = selectedNum+1;
+                    }
                     int nowPosition = holder.getLayoutPosition();
                     boolean isSelect = checkBox.isSelected();
                     if (!isSelect) {
