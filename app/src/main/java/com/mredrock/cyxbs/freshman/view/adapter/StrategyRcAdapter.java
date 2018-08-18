@@ -66,7 +66,7 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
             holder.anotherContentText.setText(content);
             holder.anotherNameText.setText(name);
             ImageView imageView = holder.anotherImage;
-            final String pic = ImageTool.getPic().get(0);
+            final String pic = pics.get(0);
             Glide.with(mContext).load(pic).into(imageView);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -98,7 +98,7 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
             holder.itemNameText.setText(name);
             if (isAnotherLayout) {
             }
-            initView(holder, ImageTool.getPic());
+            initView(holder, pics);
         }
     }
 
@@ -149,7 +149,8 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
         }
         FreshmanPagerAdapter adapter = new FreshmanPagerAdapter(imageViewList);
         viewPager.setAdapter(adapter);
-       indicatorLayout.getChildAt(0).setBackgroundResource(R.drawable.freshman_indicator_select);
+        if (indicatorLayout!=null&&indicatorLayout.getChildCount()>0)
+        indicatorLayout.getChildAt(0).setBackgroundResource(R.drawable.freshman_indicator_select);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

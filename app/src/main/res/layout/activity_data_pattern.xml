@@ -63,7 +63,8 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/pattern_view_pager"
         android:layout_margin="15dp"
+        android:background="#FFFFFF"
         android:layout_width="match_parent"
-        android:layout_height="313dp"/>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

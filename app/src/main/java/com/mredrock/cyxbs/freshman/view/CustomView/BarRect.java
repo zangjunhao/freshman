@@ -15,6 +15,7 @@ public class BarRect extends RectF{
     private Paint namePaint;
     private int belowDistance;
 
+
     public int getBelowDistance() {
         return belowDistance;
     }

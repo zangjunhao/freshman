@@ -12,6 +12,9 @@ import android.graphics.Path;
 import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.view.View;
@@ -29,29 +32,31 @@ public class BarView extends View {
     private int dashStartX;
     private int dashEndX;
     private int durationMillis;
-    private List<BarRect> rects = new ArrayList<>();
+    private List<BarRect> rects;
     private int[] colors = new int[]{Color.parseColor("#C59AFF"),Color.parseColor("#FF9DAF"),Color.parseColor("#9DB4FF")};
-    private int data[] = new int[]{101,87,84};
+    private int data[];
     private AnimatorSet set;
     private String[] names;
-
-    public BarView(Context context) {
-        super(context);
-        initPaint();
-    }
-
-    public BarView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        initPaint();
-    }
+    private double proportion;
+    private int topNum;
+    private TextPaint namePaint;
+//    private StaticLayout[] layouts = new StaticLayout[3];
 
     public BarView(Context context,int[] data,String[]names,int durationMillis){
         super(context);
         this.data = data;
         this.durationMillis = durationMillis;
         this.names = names;
+        if (data[0]<=120){
+            proportion = 1;
+            topNum = 120;
+        }else {
+            proportion = data[0]/(120+0.0);
+            topNum =(int) proportion*120;
+        }
         initPaint();
         initTextPaint();
+        initNamePaint();
     }
 
     @Override
@@ -62,6 +67,21 @@ public class BarView extends View {
         drawDash(height,width);
         initRect(width, height);
         set.start();
+    }
+
+    private void initNamePaint(){
+        namePaint = new TextPaint();
+        namePaint.setAntiAlias(true);
+        namePaint.setStrokeWidth(1);
+        namePaint.setStyle(Paint.Style.FILL);
+        namePaint.setColor(Color.parseColor("#0083FF"));
+        namePaint.setTextSize(dip2px(14));
+        namePaint.setHinting(Display.Mode.PARCELABLE_WRITE_RETURN_VALUE);
+        namePaint.setTextAlign(Paint.Align.CENTER);
+//        for (int i = 0;i<names.length;i++){
+//            layouts[i] = new StaticLayout(names[i], namePaint, (int) (400),
+//                    Layout.Alignment.ALIGN_CENTER, 1F, 0, false);
+//        }
     }
 
     private void initPaint() {
@@ -76,7 +96,7 @@ public class BarView extends View {
     private void drawDash(int height,int width) {
         dashStartX = width / 7;
         dashEndX = width - width / 9;
-        space = height / 8;
+        space =(int)( height /(8*proportion)) ;
         int endSpace = height / 8;
         int startY = height - endSpace;
         mPath.reset();
@@ -89,6 +109,7 @@ public class BarView extends View {
     }
 
     private void initRect(int layoutWidth,int layoutHeight){
+        rects = new ArrayList<>();
         int centreSpace = layoutWidth/4;
         int haftWidth = layoutWidth/20;
         int allHeight = startYs[0] - startYs[startYs.length-1];
@@ -102,13 +123,6 @@ public class BarView extends View {
         numberPaint.setTextAlign(Paint.Align.CENTER);
         numberPaint.setTypeface(Typeface.SERIF);
         numberPaint.setHinting(Display.Mode.CONTENTS_FILE_DESCRIPTOR);
-        Paint namePaint = new Paint();
-        namePaint.setStrokeWidth(1);
-        namePaint.setStyle(Paint.Style.FILL);
-        namePaint.setColor(Color.parseColor("#0083FF"));
-        namePaint.setTextSize(dip2px(14));
-        namePaint.setHinting(Display.Mode.PARCELABLE_WRITE_RETURN_VALUE);
-        namePaint.setTextAlign(Paint.Align.CENTER);
         for (int i = 0;i<3;i++){
             BarRect rect = new BarRect();
             rect.bottom = startYs[0];
@@ -120,7 +134,7 @@ public class BarView extends View {
             paint.setColor(colors[i]);
             paint.setStyle(Paint.Style.FILL);
             rect.setPaint(paint);
-            float height = Float.valueOf(data[i]*allHeight/120.0+"");
+            float height = Float.valueOf(data[i]*allHeight/topNum+"");
             float topPosition = startYs[0] -height;
             ValueAnimator valueAnimator = ObjectAnimator.ofFloat(rect,"top",rect.bottom,topPosition);
             ValueAnimator numberAnimator = ObjectAnimator.ofInt(rect,"number",0,data[i]);
@@ -170,6 +184,10 @@ public class BarView extends View {
             canvas.drawRect(rect, rect.getPaint());
             canvas.drawText(names[i],rect.getNamePositionX(),rect.getNumberPositionY()+rect.getBelowDistance(),rect.getNamePaint());
             canvas.drawText(rect.getNumber()+"人",rect.getNumberPositionX(),rect.top-dip2px(2),rect.getNumberPaint());
+//            canvas.save();
+//            canvas.translate(rect.getNamePositionX(),rect.getNamePositionY());
+//            layouts[i].draw(canvas);
+//            canvas.restore();
         }
     }
 
