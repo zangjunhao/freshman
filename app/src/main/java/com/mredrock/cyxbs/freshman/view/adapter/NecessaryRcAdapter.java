@@ -37,11 +37,7 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
     private OnClickListener onClickListener;
     private int num = 100;
     public int selectedNum = 0;
-    private HashMap<Integer,Describe_1> allDescribe_1s = new HashMap<>();
     private List<CheckBox> checkBoxList = new ArrayList<>();
-    private List<Integer> needDeleteList = new ArrayList<>();
-    private Iterator<Describe_1> iterable;
-    //private  Animation rotateAnimation = new RotateAnimation(0,270,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
     public NecessaryRcAdapter(List<Describe_1> list) {
        mList = list;
     }
@@ -50,7 +46,6 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_necessary,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
-        viewHolder.setIsRecyclable(false);
         return viewHolder;
     }
 
@@ -93,12 +88,12 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
         }else {
             checkBox.setVisibility(View.VISIBLE);
             if (number<50&&number!=0){
-                selectedNum++;
                 int oldPosition = describe_1.getOldPosition();
                 checkBox.setTag(oldPosition);
                 itemTextView.setTextColor(Color.parseColor("#999999"));
                 detailTextView.setTextColor(Color.parseColor("#999999"));
                 checkBox.setSelected(true);
+                checkBoxList.add(checkBox);
             }else {
                 itemTextView.setTextColor(Color.parseColor("#333333"));
                 detailTextView.setTextColor(Color.parseColor("#666666"));
@@ -126,9 +121,10 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean ischeck) {
                 if (!isDelete) {
+                    selectedNum = checkBoxList.size();
                     int oldPosition = (int)checkBox.getTag();
                     if (oldPosition<=selectedNum){
-                       oldPosition = selectedNum+1;
+                       oldPosition = selectedNum;
                     }
                     int nowPosition = holder.getLayoutPosition();
                     boolean isSelect = checkBox.isSelected();
@@ -138,14 +134,12 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
                         checkBox.setSelected(true);
                         notifyItemMoved(nowPosition,selectedNum);
                         checkBoxList.add(checkBox);
-                        selectedNum++;
                     } else {
                         itemTextView.setTextColor(Color.parseColor("#333333"));
                         detailTextView.setTextColor(Color.parseColor("#666666"));
                         checkBox.setSelected(false);
                         notifyItemMoved(nowPosition,oldPosition);
                         checkBoxList.remove(checkBox);
-                        selectedNum--;
                     }
                 }else {
                     checkBox.setSelected(true);
@@ -165,19 +159,6 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
                }
             }
         });
-    }
-
-    public void setItemOrder(){
-        if (checkBoxList==null)return;
-        int size = checkBoxList.size();
-        for (int i = 0;i<size;i++){
-            CheckBox checkBox = checkBoxList.get(i);
-            int oldPosition = (int)checkBox.getTag();
-            checkBox.setSelected(true);
-            checkBox.setBackgroundResource(R.drawable.freshman_blue_rectangle);
-            notifyItemMoved(oldPosition,i);
-
-        }
     }
 
     @Override

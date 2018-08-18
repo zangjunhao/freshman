@@ -19,6 +19,7 @@ import android.widget.Toolbar;
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 import com.mredrock.cyxbs.freshman.presenter.presenter.RuXuePresenter;
+import com.mredrock.cyxbs.freshman.view.CustomView.RecyclerViewNoBugLinearLayoutManager;
 import com.mredrock.cyxbs.freshman.view.adapter.NecessaryRcAdapter;
 import com.mredrock.cyxbs.freshman.view.view.RuXueView;
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
         addButton = (Button)findViewById(R.id.necessary_add_button);
         editTextView = (TextView)findViewById(R.id.necessary_edit);
         backImage = (ImageView)findViewById(R.id.necessary_back);
-        LinearLayoutManager manager = new LinearLayoutManager(this);
+        RecyclerViewNoBugLinearLayoutManager manager = new RecyclerViewNoBugLinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
         presenter = new RuXuePresenter(this,this);
         detaiFunctionView.setOnClickListener(this);
