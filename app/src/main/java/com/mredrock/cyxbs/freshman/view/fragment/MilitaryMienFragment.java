@@ -41,7 +41,7 @@ public class MilitaryMienFragment extends Fragment implements JunxunView {
     private RecyclerView PhotoList;
     private RecyclerView VideoList;
     private LayoutInflater mLayoutInflater;
-    JunXun junXun= new JunXun();
+    JunXun junXun;
     private JunxunPresenter junxunPresenter;
     ViewPager viewPager;
     private int[] Type=new int[10000];
@@ -64,17 +64,7 @@ public class MilitaryMienFragment extends Fragment implements JunxunView {
         VideoList=(RecyclerView)view.findViewById(R.id.junxunVideolist);
         final LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         VideoList.setLayoutManager(linearLayoutManager1);
-        MilitaryVideoAdapter militaryVideoAdapter=new MilitaryVideoAdapter();
-        VideoList.setAdapter(militaryVideoAdapter);
-
         viewPager= (ViewPager) view.findViewById(R.id.junxunPhotolist);
-        viewPager.setAdapter(new MyAdapter());
-        initViewPagerScroll();
-        viewPager.setOffscreenPageLimit(junXun.getPicture().size());
-        viewPager.setPageMargin(20);
-        viewPager.setPageTransformer(true,new RotationPageTransformer());
-        viewPager.setCurrentItem(junXun.getPicture().size()*10,false);
-        AutoSlide(viewPager);
         return view;
     }
 
@@ -84,7 +74,18 @@ public class MilitaryMienFragment extends Fragment implements JunxunView {
 
     }
 
-
+    @Override
+    public void onFinish() {
+        MilitaryVideoAdapter militaryVideoAdapter=new MilitaryVideoAdapter();
+        VideoList.setAdapter(militaryVideoAdapter);
+        viewPager.setAdapter(new MyAdapter());
+        initViewPagerScroll();
+        viewPager.setOffscreenPageLimit(junXun.getPicture().size());
+        viewPager.setPageMargin(20);
+        viewPager.setPageTransformer(true,new RotationPageTransformer());
+        viewPager.setCurrentItem(junXun.getPicture().size()*10,false);
+        AutoSlide(viewPager);
+    }
 
 
     class MyAdapter extends PagerAdapter {

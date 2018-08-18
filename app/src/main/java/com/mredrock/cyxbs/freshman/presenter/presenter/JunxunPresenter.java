@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.mredrock.cyxbs.freshman.R;
@@ -38,27 +39,27 @@ public class JunxunPresenter extends BasePresenter {
         Glide.with(mContext).load(url).into(bigView);
         dialog.show();
     }
-    private Subscriber getSubscriber(){
-        return new Subscriber<JunXun>() {
+
+    public void getData(){
+        Subscriber subscriber = new Subscriber<JunXun>() {
             @Override
             public void onCompleted() {
-                Log.d("junxun", "getData: onCompleted");
+                junxunView.onFinish();
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.d("junxun", "getData: onError");
+                Toast.makeText(mContext,e.getMessage(),Toast.LENGTH_LONG).show();
+                e.printStackTrace();
             }
 
             @Override
             public void onNext(JunXun junXun) {
                 junxunView.getJunxunlist(junXun);
+                Log.d("video",junXun.toString());
             }
         };
-    }
-    public void getData(){
-        HttpMethods.getInstance().getServiceOfJunxun(getSubscriber());
-        Log.d("junxun", "getData: ");
+        HttpMethods.getInstance().getServiceOfJunxun(subscriber);
     }
     private int dip2px(int dp)
     {

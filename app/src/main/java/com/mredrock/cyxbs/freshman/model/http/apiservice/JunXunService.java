@@ -6,6 +6,6 @@ import retrofit2.http.GET;
 import rx.Observable;
 
 public interface JunXunService {
-    @GET("data/get/Junxun")
+    @GET("data/get/junxun")
     Observable<JunXun> getService();
 }
