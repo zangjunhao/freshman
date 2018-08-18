@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.CampusStrategy;
 import com.mredrock.cyxbs.freshman.model.convert.GetName;
+import com.mredrock.cyxbs.freshman.view.tool.MyService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,11 +45,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView car3;
     private ImageView car4;
     private ImageView car5;
+    private ImageView car6;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         isSaveToLocal();
+        MyService.setStatusBar(this);
         haveSharePreference();
         initview();
     }
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        car3=(ImageView)findViewById(R.id.car3);
        car4=(ImageView)findViewById(R.id.car4);
        car5=(ImageView)findViewById(R.id.car5);
-
+       car6=(ImageView)findViewById(R.id.car6);
        RuXue.setOnClickListener(this);
        Junxun.setOnClickListener(this);
        GongLue.setOnClickListener(this);
@@ -166,14 +169,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         float scaleY=carsecond.getHeight()/carfirst.getHeight();
         float translation_x=carfirst_X-carsecond_X;
         float translation_y=carfirst_Y-carsecond_Y;
-        Log.d(TAG, "CarAnimator: "+carfirst_X+"  "+carfirst_Y);
-        Log.d(TAG, "CarAnimator: "+carsecond_X+"  "+carsecond_Y);
+        if(carfirst==car2)
+        {
+            ObjectAnimator objectAnimator=ObjectAnimator.ofFloat(carfirst,"translationX",0,-(car2.getX()-car6.getX()));
+            ObjectAnimator objectAnimator1=ObjectAnimator.ofFloat(carfirst,"translationY",0,-(car2.getY()-car6.getY()));
+            AnimatorSet animatorSet=new AnimatorSet();
+            animatorSet.setDuration(1000).setInterpolator(new AccelerateDecelerateInterpolator());
+            animatorSet.play(objectAnimator).with(objectAnimator1);
+            animatorSet.start();
+            animatorSet.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    carfirst.setVisibility(View.INVISIBLE);
+                    car6.setVisibility(View.VISIBLE);
+                    ObjectAnimator objectAnimator=ObjectAnimator.ofFloat(car6,"translationX",0,-(car6.getX()-car3.getX()));
+                    ObjectAnimator objectAnimator1=ObjectAnimator.ofFloat(car6,"translationY",0,-(car6.getY()-car3.getY()));
+                    AnimatorSet animatorSet=new AnimatorSet();
+                    animatorSet.setDuration(1000).setInterpolator(new AccelerateDecelerateInterpolator());
+                    animatorSet.play(objectAnimator).with(objectAnimator1);
+                    animatorSet.start();
+                    animatorSet.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            car6.setVisibility(View.INVISIBLE);
+                            carsecond.setVisibility(View.VISIBLE);
+                            startActivity(intent);
+
+                        }
+                    });
+                }
+            });
+        }
+        else {
         ObjectAnimator objectAnimator=ObjectAnimator.ofFloat(carfirst,"translationX",0,-translation_x);
         ObjectAnimator objectAnimator1=ObjectAnimator.ofFloat(carfirst,"translationY",0,-translation_y);
         ObjectAnimator objectAnimator2=ObjectAnimator.ofFloat(carfirst,"scaleX",1f,scaleX);
         ObjectAnimator objectAnimator3=ObjectAnimator.ofFloat(carfirst,"scaleY",1f,scaleY);
         AnimatorSet animatorSet=new AnimatorSet();
-        animatorSet.setDuration(2000);
+        animatorSet.setDuration(1000);
         animatorSet.setInterpolator(new AccelerateDecelerateInterpolator());
         animatorSet.play(objectAnimator).with(objectAnimator1).with(objectAnimator2).with(objectAnimator3);
         animatorSet.start();
@@ -184,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 carsecond.setVisibility(View.VISIBLE);
                 startActivity(intent);
             }
-        });
+        });}
     }
 
     private  void isSaveToLocal()
@@ -242,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(PageNumber==1)
                 {
                     PageNumber++;
-
+                    PageNumberToChange();
                     Intent intent3=new Intent(MainActivity.this,CampusStrategyActivity.class);
                    CarAnimator(car1,car2,intent3);
                 }

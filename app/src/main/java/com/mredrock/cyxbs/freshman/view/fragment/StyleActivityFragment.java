@@ -25,16 +25,13 @@ import java.util.List;
 
 public class StyleActivityFragment extends Fragment implements CampusView {
     List<Strategy>list=new ArrayList<>();
+    View view;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=LayoutInflater.from(getContext()).inflate(R.layout.fragment_style_activity,container,false);
+        view=LayoutInflater.from(getContext()).inflate(R.layout.fragment_style_activity,container,false);
         CampusStrategyPresenter campusStrategyPresenter=new CampusStrategyPresenter(this,getContext());
         campusStrategyPresenter.addData("大型活动",1,10);
-        RecyclerView recyclerView= (RecyclerView) view.findViewById(R.id.activity_recyc);
-        final LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
-        recyclerView.setLayoutManager(linearLayoutManager1);
-        recyclerView.setAdapter(new StyleActivityAdapter(list,getContext()));
         return view;
     }
 
@@ -45,6 +42,9 @@ public class StyleActivityFragment extends Fragment implements CampusView {
 
     @Override
     public void onFinish() {
-
+        RecyclerView recyclerView= (RecyclerView) view.findViewById(R.id.activity_recyc);
+        final LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(linearLayoutManager1);
+        recyclerView.setAdapter(new StyleActivityAdapter(list,getContext()));
     }
 }

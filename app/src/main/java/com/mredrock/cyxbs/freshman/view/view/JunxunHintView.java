@@ -8,4 +8,5 @@ import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 
 public interface JunxunHintView extends BaseView {
     void getJunxunHint(String hint,int id);
+
 }

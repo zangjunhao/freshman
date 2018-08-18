@@ -33,7 +33,6 @@ public class Junxun_hintPresenter extends BasePresenter {
         Subscriber<List<Describe_1>> subscriber = new Subscriber<List<Describe_1>>() {
             @Override
             public void onCompleted() {
-
             }
 
             @Override

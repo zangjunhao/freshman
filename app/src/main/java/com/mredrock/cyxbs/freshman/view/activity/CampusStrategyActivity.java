@@ -31,6 +31,7 @@ public class CampusStrategyActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         RcDecoration decoration = new RcDecoration();
         decoration.setLeft(5);
+
         recyclerView.addItemDecoration(decoration);
         MyService.setStatusBar(this);
         android.support.v7.widget.Toolbar toolbar= (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_gonglue);

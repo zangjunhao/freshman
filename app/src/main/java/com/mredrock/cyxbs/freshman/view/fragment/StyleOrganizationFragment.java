@@ -36,21 +36,21 @@ public class StyleOrganizationFragment extends Fragment implements CampusView{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_style_organization,container,false);
-        init();
+
+        strategyPresenter=new CampusStrategyPresenter(this,getContext());
+        strategyPresenter.addData("学生组织",1,9);
         return view;
     }
 
     private void init()
     {
-        strategyPresenter=new CampusStrategyPresenter(this,getContext());
-        strategyPresenter.addData("学生组织",1,9);
         tabLayout=(TabLayout)view.findViewById(R.id.style_organization_Tab);
         viewPager=(ViewPager)view.findViewById(R.id.style_organization_viewpager);
         for(int i=0;i<mList.size();i++)
         {
             tabLayout.addTab(tabLayout.newTab().setText(mList.get(i).getName()));
         }
-        viewPager.setAdapter(new StyleOrganPagerAdapter(getFragmentManager(),mList));
+        viewPager.setAdapter(new StyleOrganPagerAdapter(getChildFragmentManager(),mList));
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
     }
@@ -61,7 +61,7 @@ public class StyleOrganizationFragment extends Fragment implements CampusView{
 
     @Override
     public void onFinish() {
-
+        init();
     }
 
 }

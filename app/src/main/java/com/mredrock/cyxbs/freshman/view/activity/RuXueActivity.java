@@ -53,14 +53,20 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
         inputView = (EditText)findViewById(R.id.necessary_add_input);
         addButton = (Button)findViewById(R.id.necessary_add_button);
         editTextView = (TextView)findViewById(R.id.necessary_edit);
-        backImage = (ImageView)findViewById(R.id.necessary_back);
+
         RecyclerViewNoBugLinearLayoutManager manager = new RecyclerViewNoBugLinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
         presenter = new RuXuePresenter(this,this);
         detaiFunctionView.setOnClickListener(this);
         floatingActionButton.setOnClickListener(this);
         editTextView.setOnClickListener(this);
-        backImage.setOnClickListener(this);
+        android.support.v7.widget.Toolbar toolbar= (android.support.v7.widget.Toolbar) findViewById(R.id.necessary_app_bar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setRemoveDuration(1000);
         defaultItemAnimator.setChangeDuration(0);
@@ -106,9 +112,6 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
                 inputView.setText("");
                 addLayout.setVisibility(View.GONE);
                 floatingActionButton.show();
-                break;
-            case R.id.necessary_back:
-                finish();
                 break;
             case R.id.necessary_edit:
                 if (!adapter.isDelete){

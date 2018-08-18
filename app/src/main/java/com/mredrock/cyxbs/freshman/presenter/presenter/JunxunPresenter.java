@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.JunXun;
 import com.mredrock.cyxbs.freshman.model.http.httpmethods.HttpMethods;
 import com.mredrock.cyxbs.freshman.presenter.base.BasePresenter;
+import com.mredrock.cyxbs.freshman.view.tool.MyService;
 import com.mredrock.cyxbs.freshman.view.view.JunxunView;
 
 import rx.Observable;
@@ -32,12 +34,21 @@ public class JunxunPresenter extends BasePresenter {
 
     public void showPhoto(String url)
     {
-        Dialog dialog=new Dialog(mContext);
-        View view = LayoutInflater.from(mContext).inflate(R.layout.dialog_largephoto, null, false);
-        dialog.addContentView(view, new RelativeLayout.LayoutParams(dip2px(301), dip2px(316)));
-        final ImageView bigView = (ImageView) dialog.findViewById(R.id.large_image);
-        Glide.with(mContext).load(url).into(bigView);
+        final Dialog dialog=new Dialog(mContext);
+       int displayWidth = MyService.getDisplayWidth(mContext);
+        LinearLayout.LayoutParams params =
+                new LinearLayout.LayoutParams(displayWidth,displayWidth/2);
+        ImageView imageView1 = new ImageView(mContext);
+        imageView1.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        Glide.with(mContext).load(url).into(imageView1);
+        dialog.setContentView(imageView1,params);
         dialog.show();
+        imageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
     }
 
     public void getData(){

@@ -107,12 +107,12 @@ public class MilitaryMienFragment extends Fragment implements JunxunView {
             ImageView img = (ImageView) view.findViewById(R.id.viewpager_image);
             TextView textView=(TextView) view.findViewById(R.id.junxunPhoto_name) ;
             textView.setText(junXun.getPicture().get(position).getName());
-            Glide.with(getContext()).load(junXun.getPicture().get(position).getUrl()).into(img);
+            Glide.with(getContext()).load("http://47.106.33.112:8080/welcome2018"+junXun.getPicture().get(position).getUrl()).into(img);
             final int finalPosition = position;
             img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    junxunPresenter.showPhoto(junXun.getPicture().get(finalPosition).getUrl());
+                    junxunPresenter.showPhoto("http://47.106.33.112:8080/welcome2018"+junXun.getPicture().get(finalPosition).getUrl());
                 }
             });
             container.addView(view);

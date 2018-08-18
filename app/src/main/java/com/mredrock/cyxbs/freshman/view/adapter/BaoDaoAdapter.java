@@ -1,6 +1,7 @@
 package com.mredrock.cyxbs.freshman.view.adapter;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -15,6 +17,7 @@ import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Strategy;
 import com.mredrock.cyxbs.freshman.view.activity.BaoDaoActivity;
 import com.mredrock.cyxbs.freshman.view.activity.Main2Activity;
+import com.mredrock.cyxbs.freshman.view.tool.MyService;
 
 import java.util.List;
 
@@ -44,8 +47,50 @@ public class BaoDaoAdapter extends RecyclerView.Adapter<BaoDaoAdapter.BaoDaoAdap
     public void onBindViewHolder(BaoDaoAdapterViewHolder holder, final int position) {
             ImageView imageView=holder.imageView1;
         Glide.with(context).load("http://47.106.33.112:8080/welcome2018"+list.get(position).getPicture().get(0)).into(imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog=new Dialog(context);
+                int displayWidth = MyService.getDisplayWidth(context);
+                LinearLayout.LayoutParams params =
+                        new LinearLayout.LayoutParams(displayWidth,displayWidth/2);
+                ImageView imageView1 = new ImageView(context);
+                imageView1.setScaleType(ImageView.ScaleType.FIT_XY);
+                Glide.with(context).load("http://47.106.33.112:8080/welcome2018"+list.get(position).getPicture().get(0)).into(imageView1);
+                dialog.setContentView(imageView1,params);
+                dialog.show();
+                imageView1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+
         ImageView imageView1=holder.imageView2;
         Glide.with(context).load("http://47.106.33.112:8080/welcome2018"+list.get(position).getPicture().get(1)).into(imageView1);
+        imageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog=new Dialog(context);
+                int displayWidth = MyService.getDisplayWidth(context);
+                LinearLayout.LayoutParams params =
+                        new LinearLayout.LayoutParams(displayWidth,displayWidth/2);
+                ImageView imageView1 = new ImageView(context);
+                imageView1.setScaleType(ImageView.ScaleType.FIT_XY);
+                Glide.with(context).load("http://47.106.33.112:8080/welcome2018"+list.get(position).getPicture().get(1)).into(imageView1);
+                dialog.setContentView(imageView1,params);
+                dialog.show();
+                imageView1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+
         TextView textView=holder.title;
         textView.setText(list.get(position).getName());
         final TextView textView1=holder.content;

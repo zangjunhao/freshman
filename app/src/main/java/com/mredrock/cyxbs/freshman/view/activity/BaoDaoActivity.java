@@ -27,6 +27,15 @@ public class BaoDaoActivity extends AppCompatActivity implements CampusView {
         MyService.setStatusBar(this);
         CampusStrategyPresenter campusStrategyPresenter=new CampusStrategyPresenter(this,this);
         campusStrategyPresenter.addData("报道流程",1,10);
+    }
+
+    @Override
+    public void getData(Strategy strategy) {
+        list.add(strategy);
+    }
+
+    @Override
+    public void onFinish() {
         RecyclerView recyclerView= (RecyclerView) findViewById(R.id.BaoDao_rec);
         recyclerView.setAdapter(new BaoDaoAdapter(list,this,this));
         final LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(this ,LinearLayoutManager.VERTICAL,false);
@@ -38,15 +47,5 @@ public class BaoDaoActivity extends AppCompatActivity implements CampusView {
                 finish();
             }
         });
-    }
-
-    @Override
-    public void getData(Strategy strategy) {
-        list.add(strategy);
-    }
-
-    @Override
-    public void onFinish() {
-
     }
 }
