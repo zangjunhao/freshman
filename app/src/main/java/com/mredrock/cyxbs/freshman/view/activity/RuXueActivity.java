@@ -1,32 +1,29 @@
 package com.mredrock.cyxbs.freshman.view.activity;
 
-import android.os.Handler;
+import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.mredrock.cyxbs.freshman.R;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
 import com.mredrock.cyxbs.freshman.presenter.presenter.RuXuePresenter;
-import com.mredrock.cyxbs.freshman.view.CustomView.RecyclerViewNoBugLinearLayoutManager;
 import com.mredrock.cyxbs.freshman.view.adapter.NecessaryRcAdapter;
 import com.mredrock.cyxbs.freshman.view.tool.MyService;
 import com.mredrock.cyxbs.freshman.view.view.RuXueView;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.TreeSet;
 
 public class RuXueActivity extends AppCompatActivity implements RuXueView, View.OnClickListener,NecessaryRcAdapter.OnClickListener{
 
@@ -160,6 +157,24 @@ public class RuXueActivity extends AppCompatActivity implements RuXueView, View.
             return;
         }else {
             presenter.update("number",String.valueOf(id),"id="+selection);
+        }
+    }
+    class RecyclerViewNoBugLinearLayoutManager extends LinearLayoutManager  {
+
+
+        public RecyclerViewNoBugLinearLayoutManager(Context context) {
+            super(context);
+        }
+
+        @Override
+        public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+            try {
+                super.onLayoutChildren(recycler, state);
+            }catch (IndexOutOfBoundsException e){
+                mList.clear();
+                presenter.addData();
+                e.printStackTrace();
+            }
         }
     }
 }

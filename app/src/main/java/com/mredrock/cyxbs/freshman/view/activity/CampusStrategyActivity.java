@@ -25,7 +25,6 @@ public class CampusStrategyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campus_strategy);
         recyclerView = (RecyclerView)findViewById(R.id.campus_recycler_view);
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);
         recyclerView.setLayoutManager(gridLayoutManager);
         CampusRcAdapter adapter = new CampusRcAdapter();

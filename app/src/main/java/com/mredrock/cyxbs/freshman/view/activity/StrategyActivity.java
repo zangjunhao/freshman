@@ -30,8 +30,6 @@ public class StrategyActivity extends AppCompatActivity implements CampusView{
     private StrategyRcAdapter adapter;
     private CampusStrategyPresenter presenter;
     private TextView labelText;
-    private ImageView backImag;
-    private RelativeLayout bedroomChooseLayout;
     private RelativeLayout top5Layout;
     private String name;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

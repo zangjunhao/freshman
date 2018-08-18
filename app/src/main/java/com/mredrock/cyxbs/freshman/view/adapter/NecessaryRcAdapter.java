@@ -1,29 +1,20 @@
 package com.mredrock.cyxbs.freshman.view.adapter;
 
 import android.graphics.Color;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.RotateAnimation;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.mredrock.cyxbs.freshman.R;
-import com.mredrock.cyxbs.freshman.model.convert.Describe;
 import com.mredrock.cyxbs.freshman.model.convert.Describe_1;
-
-import java.nio.charset.CharacterCodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.TreeSet;
-import java.util.zip.Inflater;
 
 public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.ViewHolder>  {
 
@@ -34,10 +25,11 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
     public static final int UPDATE_T = 2;
     public static final int UPDATE_F = 3;
     public static final int UPDATE_POSTTION = 4;
+    public Handler handler = new Handler();
     private OnClickListener onClickListener;
     private int num = 100;
     public int selectedNum = 0;
-    private List<CheckBox> checkBoxList = new ArrayList<>();
+    private HashSet<CheckBox> checkBoxList = new HashSet<>();
     public NecessaryRcAdapter(List<Describe_1> list) {
        mList = list;
     }
@@ -46,6 +38,7 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_necessary,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
+     //   viewHolder.setIsRecyclable(false);
         return viewHolder;
     }
 
@@ -87,7 +80,7 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
             }
         }else {
             checkBox.setVisibility(View.VISIBLE);
-            if (number<50&&number!=0){
+            if (number<50){
                 int oldPosition = describe_1.getOldPosition();
                 checkBox.setTag(oldPosition);
                 itemTextView.setTextColor(Color.parseColor("#999999"));
@@ -122,9 +115,12 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
             public void onCheckedChanged(CompoundButton compoundButton, boolean ischeck) {
                 if (!isDelete) {
                     selectedNum = checkBoxList.size();
-                    int oldPosition = (int)checkBox.getTag();
+                    int oldPosition = selectedNum;
                     if (oldPosition<=selectedNum){
                        oldPosition = selectedNum;
+                    }
+                    if (oldPosition==mList.size()){
+                        oldPosition--;
                     }
                     int nowPosition = holder.getLayoutPosition();
                     boolean isSelect = checkBox.isSelected();
@@ -133,12 +129,14 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
                         detailTextView.setTextColor(Color.parseColor("#999999"));
                         checkBox.setSelected(true);
                         notifyItemMoved(nowPosition,selectedNum);
+                        describe_1.setNumber(selectedNum+1);
                         checkBoxList.add(checkBox);
                     } else {
                         itemTextView.setTextColor(Color.parseColor("#333333"));
                         detailTextView.setTextColor(Color.parseColor("#666666"));
                         checkBox.setSelected(false);
                         notifyItemMoved(nowPosition,oldPosition);
+                        describe_1.setNumber(100+selectedNum);
                         checkBoxList.remove(checkBox);
                     }
                 }else {
@@ -160,6 +158,7 @@ public class NecessaryRcAdapter extends RecyclerView.Adapter<NecessaryRcAdapter.
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
