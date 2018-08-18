@@ -40,6 +40,7 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
     public static final int ANOTHER_LAYOUT = 1;
     public static final int NOMAL_LAYOUT = 0;
     private int displayWidth;
+    private static final String BASEURL = "http://47.106.33.112:8080/welcome2018";
 
 
     @Override
@@ -65,8 +66,8 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
             holder.anotherContentText.setText(content);
             holder.anotherNameText.setText(name);
             ImageView imageView = holder.anotherImage;
-            final String pic = pics.get(0);
-            Glide.with(mContext).load("http://47.106.33.112:8080/welcome2018"+pic).into(imageView);
+            final String pic = BASEURL+pics.get(0);
+            Glide.with(mContext).load(pic).into(imageView);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -75,7 +76,7 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
                             new LinearLayout.LayoutParams(displayWidth,displayWidth/2);
                     ImageView imageView1 = new ImageView(mContext);
                     imageView1.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    Glide.with(mContext).load("http://47.106.33.112:8080/welcome2018"+pic).into(imageView1);
+                    Glide.with(mContext).load(pic).into(imageView1);
                     dialog.setContentView(imageView1,params);
                     dialog.show();
                     imageView1.setOnClickListener(new View.OnClickListener() {
@@ -107,16 +108,15 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
         layoutParams.leftMargin = dip2px(5);
         layoutParams.rightMargin = dip2px(5);
         List<View> imageViewList = new ArrayList<>();
-        imageViewList.clear();
         final ViewPager viewPager = holder.itemView;
-        viewPager.removeAllViews();
         final LinearLayout indicatorLayout = holder.indicatorLayout;
         indicatorLayout.removeAllViews();
         int size = pic.size();
         for (int i = 0;i<size;i++){
+            String p = BASEURL+pic.get(i);
             final ImageView imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            Glide.with(mContext).load("http://47.106.33.112:8080/welcome2018"+pic.get(i)).into(imageView);
+            Glide.with(mContext).load(p).into(imageView);
             imageViewList.add(imageView);
             Button button = new Button(mContext);
             button.setBackgroundResource(R.drawable.freshman_indicator_unselect);
@@ -130,7 +130,7 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
                     ViewPager pager = new ViewPager(mContext);
                     for (int k = 0;k<pic.size();k++){
                         ImageView imageView1 =(ImageView) LayoutInflater.from(mContext).inflate(R.layout.single_image_view,null);
-                        Glide.with(mContext).load("http://47.106.33.112:8080/welcome2018"+pic.get(k)).into(imageView1);
+                        Glide.with(mContext).load(BASEURL+pic.get(k)).into(imageView1);
                         views.add(imageView1);
                     }
                   FreshmanPagerAdapter adapter = new FreshmanPagerAdapter(views);
@@ -148,9 +148,6 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
                     });
                 }
             });
-            if (i>2){
-                break;
-            }
         }
         FreshmanPagerAdapter adapter = new FreshmanPagerAdapter(imageViewList);
         viewPager.setAdapter(adapter);
