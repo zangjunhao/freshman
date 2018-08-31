@@ -40,7 +40,7 @@ public class StrategyRcAdapter extends RecyclerView.Adapter<StrategyRcAdapter.Vi
     public static final int ANOTHER_LAYOUT = 1;
     public static final int NOMAL_LAYOUT = 0;
     private int displayWidth;
-    private static final String BASEURL = "http://47.106.33.112:8080/welcome2018";
+    private static final String BASEURL = "http://wx.yyeke.com/welcome2018/";
 
 
     @Override

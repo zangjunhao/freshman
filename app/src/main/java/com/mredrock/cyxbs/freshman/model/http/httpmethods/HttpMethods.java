@@ -39,7 +39,7 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 public class HttpMethods {
-    public static final String BASE_URL = "http://47.106.33.112:8080/welcome2018/";
+    public static final String BASE_URL = "http://wx.yyeke.com/welcome2018/";
     private static final int DEFAULT_TIMEOUT = 8;
     private Retrofit retrofit;
 
